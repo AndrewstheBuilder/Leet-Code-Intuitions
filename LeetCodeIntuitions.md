@@ -47,6 +47,7 @@ Solution: Go through the array and remove the duplicate
         return len(nums)
 ```
 Intuition: If you are popping a digit from the array that is basically the same as moving forward. THe array length decreases by 1 but you are keeping the i the same so you are onto the next element in the array. That is why only the else statement has i+=1
+
 3. Problem: [https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/submissions/1442054017/]
 
 Solution: Go through the string and test each substring
