@@ -25,6 +25,7 @@ def length_of_longest_substring(s: str) -> int:
 Intuition: you are sliding a continuous window across the string. If you find a match you put the left pointer past the character you found a max on. And you update the char_index where you found the character which takes care of the case where you found a duplicate character and updated the left pointer and having a unique character.
 
 2. Problem: Remove Duplicates from sorted array
+
 Solution: Go through the array and remove the duplicate
 ``` python
  def removeDuplicates(self, nums):
