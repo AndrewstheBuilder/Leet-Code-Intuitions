@@ -47,3 +47,24 @@ Solution: Go through the array and remove the duplicate
         return len(nums)
 ```
 Intuition: If you are popping a digit from the array that is basically the same as moving forward. THe array length decreases by 1 but you are keeping the i the same so you are onto the next element in the array. That is why only the else statement has i+=1
+3. Problem: [https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/submissions/1442054017/]
+
+Solution: Go through the string and test each substring
+```python
+def strStr(self, haystack, needle):
+        """
+        :type haystack: str
+        :type needle: str
+        :rtype: int
+        """
+        if(len(needle)>haystack):
+            return -1
+        i = 0
+        while i < len(haystack):
+            if(haystack[i:len(needle)+i] == needle):
+                return i
+            else:
+                i += 1
+        return -1
+```
+Intuition: I made a mistake by skipping the len of the strength by updating i = i + len(needle) but the current word I am testing might be wrong but have the start of needle in it. like missiissipi search for **issi** if I skip the length of issi after testing missi I would end up at the next **I** and not the first occurrence of **issi**
