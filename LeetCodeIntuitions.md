@@ -69,3 +69,5 @@ def strStr(self, haystack, needle):
         return -1
 ```
 Intuition: I made a mistake by skipping the len of the strength by updating i = i + len(needle) but the current word I am testing might be wrong but have the start of needle in it. like missiissipi search for **issi** if I skip the length of issi after testing missi I would end up at the next **I** and not the first occurrence of **issi**
+
+4. Arrays Problem: https://leetcode.com/problems/merge-sorted-array/solutions/5714203/video-simple-solution-coding-exercise/?envType=study-plan-v2&envId=top-interview-150
