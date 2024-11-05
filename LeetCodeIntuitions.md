@@ -109,3 +109,6 @@ def merge(self, nums1, m, nums2, n):
             p -= 1
 ```
 Intuition: Using three pointers and starting from the end to move the largest element to the end avoids shifting elements over after insertion. Since we know both arrays are sorted in increasing order and the largest element has to go to the end.
+
+5. Linked List Problem: https://leetcode.com/problems/merge-k-sorted-lists/description/
+   
