@@ -111,4 +111,44 @@ def merge(self, nums1, m, nums2, n):
 Intuition: Using three pointers and starting from the end to move the largest element to the end avoids shifting elements over after insertion. Since we know both arrays are sorted in increasing order and the largest element has to go to the end.
 
 5. Linked List Problem: https://leetcode.com/problems/merge-k-sorted-lists/description/
+
+6. (Longest Palindromic Substring)[https://leetcode.com/problems/longest-palindromic-substring/description/]
+
+Solution that times out:
+``` python
+def longestPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        # gather all possible contiguous substrings
+        cs = []
+        for i in range(len(s)):
+            cs.append(s[i])
+            for j in range(i+1, len(s)):
+                prevElement = cs[-1]
+                newElement = prevElement+s[j]
+                cs.append(newElement)
+        # print('all substrings:',cs)
+        longestSubLen = 0
+        ans = ""
+        for i in range(len(cs)):
+            # determine if palindrome
+            c = cs[i]
+            p1=0
+            p2=len(c)-1
+            is_palindrome = True
+            while p1 < p2:
+                if(c[p1]!=c[p2]):
+                    is_palindrome=False
+                    break
+                p1+=1
+                p2-=1
+            if(is_palindrome and len(c)>longestSubLen):
+                longestSubLen = len(c)
+                ans = c
+        return ans
+```
+
+Intuition: Generate all possible substrings. Determine if a substring is a palindrome by having two pointers starting at the opposite end of the string. If the pointers become equal we do not have to check that entry because self=itself. How do I make this perform faster? I think the substring creation has to be modified to be faster. Currently makes it O(n^2)
    
