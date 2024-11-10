@@ -152,3 +152,24 @@ def longestPalindrome(self, s):
 
 Intuition: Generate all possible substrings. Determine if a substring is a palindrome by having two pointers starting at the opposite end of the string. If the pointers become equal we do not have to check that entry because self=itself. How do I make this perform faster? I think the substring creation has to be modified to be faster. Currently makes it O(n^2)
    
+7. [Jump Game Two](https://leetcode.com/problems/jump-game-ii/description/?envType=problem-list-v2&envId=dynamic-programming)
+
+Solution: 
+``` python
+def jump(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        def recurse(i, n, arr):
+            if(i==len(arr)-1):
+                ans.append(n)
+                return
+            for x in range(arr[i]):
+                if(i+x <= len(arr)-1):
+                    recurse(i+x, n+1, arr)
+        ans = []
+        recurse(0,0,nums)
+```
+This solution goes past the maximum recursion depth. It does not work.
+But intuitively it makes sense. I am building up the recursion tree with all the possibilies. Then I will have all of it in ans. And I will pick the lowest entry in ans.
