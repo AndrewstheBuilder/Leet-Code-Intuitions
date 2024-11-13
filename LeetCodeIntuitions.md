@@ -151,6 +151,34 @@ def longestPalindrome(self, s):
 ```
 
 Intuition: Generate all possible substrings. Determine if a substring is a palindrome by having two pointers starting at the opposite end of the string. If the pointers become equal we do not have to check that entry because self=itself. How do I make this perform faster? I think the substring creation has to be modified to be faster. Currently makes it O(n^2)
+
+Solution that works:
+```python
+def longestPalindrome(s):
+    # Helper function to expand around the center and return the longest palindrome
+    def expand_around_center(left, right):
+        while left >= 0 and right < len(s) and s[left] == s[right]:
+            left -= 1
+            right += 1
+        # Return the substring that is the palindrome
+        return s[left + 1:right]
+
+    largest = ""
+    for i in range(len(s)):
+        # Odd-length palindromes (expand around one character center)
+        odd_palindrome = expand_around_center(i, i)
+        if len(odd_palindrome) > len(largest):
+            largest = odd_palindrome
+        
+        # Even-length palindromes (expand around two characters center)
+        even_palindrome = expand_around_center(i, i + 1)
+        if len(even_palindrome) > len(largest):
+            largest = even_palindrome
+    
+    return largest
+```
+
+Intuition: 
    
 7. [Jump Game Two](https://leetcode.com/problems/jump-game-ii/description/?envType=problem-list-v2&envId=dynamic-programming)
 
