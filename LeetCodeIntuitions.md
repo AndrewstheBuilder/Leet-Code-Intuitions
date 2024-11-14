@@ -201,3 +201,31 @@ def jump(self, nums):
 ```
 This solution goes past the maximum recursion depth. It does not work.
 But intuitively it makes sense. I am building up the recursion tree with all the possibilies. Then I will have all of it in ans. And I will pick the lowest entry in ans.
+
+9. Rotational Cipher
+
+Solution: Using ASCII arthimetic
+``` python
+def rotationalCipher(input_str, rotation_factor):
+    if input_str is None:
+        return ""
+    
+    new_str = []
+    for char in input_str:
+        if char.isdigit():
+            # Rotate digits
+            new_char = chr(((ord(char) - ord('0') + rotation_factor) % 10) + ord('0'))
+            new_str.append(new_char)
+        elif char.isalpha():
+            # Rotate letters
+            if char.islower():
+                new_char = chr(((ord(char) - ord('a') + rotation_factor) % 26) + ord('a'))
+            else:
+                new_char = chr(((ord(char) - ord('A') + rotation_factor) % 26) + ord('A'))
+            new_str.append(new_char)
+        else:
+            # Non-alphanumeric characters remain unchanged
+            new_str.append(char)
+    
+    return ''.join(new_str)
+```
