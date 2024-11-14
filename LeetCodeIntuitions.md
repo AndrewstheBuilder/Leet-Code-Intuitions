@@ -303,3 +303,26 @@ def validWordAbbreviation(self, word: str, abbr: str) -> bool:
 
     return i == len(word)
 ```
+
+An even better solution built on top of the chat gpt one. Code is more succinct: Time O(n), Space: O(1)
+```python
+i = j = 0
+
+        while j<len(abbr) and i<len(word):
+            if(abbr[j].isalpha()):
+                if(word[i] != abbr[j]):
+                    return False # the abbr and word does not match 
+                i += 1
+                j += 1
+            elif abbr[j].isdigit():
+                if abbr[j] == '0':
+                    return False # leading 0
+                num = 0
+                while j<len(abbr) and abbr[j].isdigit():
+                    num = num * 10 + int(abbr[j])
+                    j += 1
+                i += num # skip ahead
+            else:
+                return False # invalid character encountered
+        return i == len(word) and j == len(abbr)
+```
