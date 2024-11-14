@@ -229,3 +229,47 @@ def rotationalCipher(input_str, rotation_factor):
     
     return ''.join(new_str)
 ```
+
+10. Valid Word Abbreviation: String Easy problem
+
+Solution:
+``` python
+def validWordAbbreviation(self, word, abbr):
+        skip_char = []
+        numberEncountered=[]
+        for a in range(len(abbr)):
+            if(abbr[a].isalpha()):
+                if(len(numberEncountered)!=0):
+                    if(numberEncountered[0]=="0"):
+                        # leading zero encountered
+                        return False
+                    skip_char.append(''.join(numberEncountered))
+                    numberEncountered=[] # reset numberEncountered
+                skip_char.append(abbr[a])
+            elif(abbr[a].isdigit()):
+                if(len(numberEncountered)>0 and numberEncountered[0]=="0"):
+                    return False # leading zero encountered
+                numberEncountered.append(abbr[a])
+        if(len(numberEncountered) != 0):
+            # if number encountered at end abbr
+            if(numberEncountered[0]=='0'):
+                return False # leading zero encountered or empty skip
+            skip_char.append(''.join(numberEncountered))
+
+        i = 0
+        while i < len(word):
+            if(len(skip_char)==0):
+                # abbr does not match word
+                return False
+            skip = skip_char.pop(0)
+            if(skip.isdigit()==False):
+                if(skip!=word[i]):
+                    # abbr does not match
+                    return False
+                i+=1
+            else:
+                i+=int(skip)
+                if(i>len(word)):
+                    return False # we skipped too far
+        return len(skip_char)==0
+```
