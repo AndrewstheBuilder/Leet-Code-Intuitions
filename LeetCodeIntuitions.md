@@ -230,9 +230,9 @@ def rotationalCipher(input_str, rotation_factor):
     return ''.join(new_str)
 ```
 
-10. Valid Word Abbreviation: String Easy problem
+10. Valid Word Abbreviation: String Easy problem from Meta Leet Code
 
-Solution:
+My Solution Time: O(n), Space: O(n):
 ``` python
 def validWordAbbreviation(self, word, abbr):
         skip_char = []
@@ -272,4 +272,34 @@ def validWordAbbreviation(self, word, abbr):
                 if(i>len(word)):
                     return False # we skipped too far
         return len(skip_char)==0
+```
+
+Better Solution using pointers Time: O(n), Space:O(1)
+```python
+def validWordAbbreviation(self, word: str, abbr: str) -> bool:
+    i, j = 0, 0  # `i` for word, `j` for abbr
+    
+    while j < len(abbr):
+        if abbr[j].isalpha():
+            # If there's a mismatch in characters
+            if i >= len(word) or word[i] != abbr[j]:
+                return False
+            i += 1
+            j += 1
+        elif abbr[j].isdigit():
+            # Leading zero check
+            if abbr[j] == '0':
+                return False
+            # Build the number from digits
+            num = 0
+            while j < len(abbr) and abbr[j].isdigit():
+                num = num * 10 + int(abbr[j])
+                j += 1
+            i += num  # skip the characters in word
+            if i > len(word):  # if skip goes beyond word length
+                return False
+        else:
+            return False  # invalid character in abbr
+
+    return i == len(word)
 ```
