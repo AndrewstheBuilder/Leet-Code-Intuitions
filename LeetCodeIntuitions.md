@@ -361,3 +361,40 @@ def minRemoveToMakeValid(self, s):
 ```
 
 Intuition: find indices of invalid parenthesis. Construct the string without the invalid indices
+
+12. Basic Calculator II Medium String Parsing expression Problem ()[]
+
+Broken Solution I basically cannot evaluate this expression. This was my first idea though
+```python
+# first for loop to parse integers and operators to build expr
+# second for loop evaluate expr
+import operator
+
+# Map operators to their corresponding functions
+operator_map = {
+    '+': operator.add,
+    '-': operator.sub,
+    '*': operator.mul,
+    '/': operator.floordiv,  # Use floordiv for truncated division
+}
+i = 0
+expr = []
+
+while i < len(s):
+    if(s[i].isdigit()):
+        num=[s[i]]
+        i += 1
+        while(i<len(s) and s[i].isdigit()):
+            num.append(s[i])
+            i+=1
+        expr.append(int(num))
+    elif(s[i] in operator_map):
+        expr.append(operator_map[s[i]])
+        i += 1
+    else:
+        # ignore spaces
+        i += 1
+
+# evaluate expression
+```
+
