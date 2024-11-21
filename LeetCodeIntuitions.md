@@ -362,7 +362,7 @@ def minRemoveToMakeValid(self, s):
 
 Intuition: find indices of invalid parenthesis. Construct the string without the invalid indices
 
-12. Basic Calculator II Medium String Parsing expression Problem ()[]
+12. Basic Calculator II Medium String Parsing expression Problem (https://leetcode.com/problems/basic-calculator-ii/?envType=company&envId=facebook&favoriteSlug=facebook-thirty-days)[Link]
 
 Broken Solution I basically cannot evaluate this expression. This was my first idea though
 ```python
