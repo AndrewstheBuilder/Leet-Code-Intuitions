@@ -326,3 +326,38 @@ i = j = 0
                 return False # invalid character encountered
         return i == len(word) and j == len(abbr)
 ```
+
+11. Minimum Remove to Make Valid Parenthesis (Medium String (Problem)[https://leetcode.com/problems/minimum-remove-to-make-valid-parentheses/?envType=company&envId=facebook&favoriteSlug=facebook-thirty-days])
+
+Solution:
+``` python
+def minRemoveToMakeValid(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        st = []
+        invalid_indices=[]
+        res = []
+
+        # find invalid parenthesis
+        for i in range(len(s)):
+            if(s[i]=="("):
+                st.append(i)
+            elif(s[i]==")" and len(st)>0):
+                st.pop() # pop the last inserted element
+            elif(s[i]==")"):
+                invalid_indices.append(i)
+        
+        if(len(st)>0):
+            invalid_indices.extend(st)
+
+        # construct the string without the invalid indices
+        for i in range(len(s)):
+            if(i not in invalid_indices):
+                res.append(s[i])
+        
+        return "".join(res)
+```
+
+Intuition: find indices of invalid parenthesis. Construct the string without the invalid indices
