@@ -397,4 +397,46 @@ while i < len(s):
 
 # evaluate expression
 ```
+Working Solution: Create postfix expression from infix and evaluate as you are creating postfix
+``` python
+def calculate(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        # create post fix array
+        prec = {'+':1, '-':1, '*':2, '/':2}
+        opr_a = {'+': operator.add, '-': operator.sub, '*':operator.mul, '/':operator.floordiv}
+        out=[]
+        opr=[]
+        i = 0
 
+        # evaluate infix operation using postfix iteration
+        while i < len(s):
+            if s[i].isdigit():
+                num = [s[i]]
+                i += 1
+                # iterate until we get all the indiv digits of the number
+                while(i<len(s) and s[i].isdigit()):
+                    num.append(s[i])
+                    i += 1
+                out.append(int("".join(num)))
+            elif s[i] in prec:
+                while len(opr)>0 and prec[opr[-1]] >= prec[s[i]]:
+                    n2 = out.pop()
+                    n1 = out.pop()
+                    res = opr_a[opr.pop()](n1, n2)
+                    out.append(res)
+                opr.append(s[i])
+                i+=1
+            else:
+                i+=1
+            
+        while len(opr)>0:
+            n2 = out.pop()
+            n1 = out.pop()
+            res = opr_a[opr.pop()](n1, n2)
+            out.append(res)
+
+        return out[0]
+```
