@@ -446,7 +446,6 @@ def calculate(self, s):
 ```python
 def validPalindrome(self, s):
     def isPalindrome(ss):
-        rev = reversed(ss)
         if(ss==ss[::-1]):
             return True
         return False
