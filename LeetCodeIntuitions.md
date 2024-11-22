@@ -463,3 +463,24 @@ def validPalindrome(self, s):
 # time: O(n^2)
 # space: O(n)
 ```
+- Optimal Solution O(n): time, O(1): space
+```python
+    def validPalindrome(self, s):
+        def isPalindromeRange(left, right):
+            while left < right:
+                if s[left] != s[right]:
+                    return False
+                left += 1
+                right -= 1
+            return True
+        
+        left, right = 0, len(s) - 1
+        while left < right:
+            if s[left] != s[right]:
+                # Try skipping left or right
+                return isPalindromeRange(left+1, right) or isPalindromeRange(left, right-1)
+            left += 1
+            right -= 1
+        return True
+```
+- Intuition: we can delete at most 1 char. We can either go down a path where we delete the right char when the chars don't match or the left char. We have already verified the ends of the string if we are in the midst of iteration. Otherwise we can have a char we skip at the ends. Example: 'abaz' or in the midst example: 'abza'. -> the midst example becomes a sub problem as iteration happens. 1. 'abza' 2. 'bz' 3. 'b'
