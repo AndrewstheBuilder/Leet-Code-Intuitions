@@ -329,7 +329,7 @@ i = j = 0
 
 11. Minimum Remove to Make Valid Parenthesis (Medium String (Problem)[https://leetcode.com/problems/minimum-remove-to-make-valid-parentheses/?envType=company&envId=facebook&favoriteSlug=facebook-thirty-days])
 
-Solution:
+Not Optimal Solution:
 ``` python
 def minRemoveToMakeValid(self, s):
         """
@@ -358,6 +358,43 @@ def minRemoveToMakeValid(self, s):
                 res.append(s[i])
         
         return "".join(res)
+```
+- Time: O(n^2) -> because of the last for loop we are looking in invalid_indices which in the worst case could contain n elements
+- Space: O(n)
+
+Optimal Solution with regards to time complexity by using Set
+```python
+``` python
+def minRemoveToMakeValid(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        st = []
+        invalid_indices=set()
+        res = []
+
+        # find invalid parenthesis
+        for i in range(len(s)):
+            if(s[i]=="("):
+                st.append(i)
+            elif(s[i]==")" and len(st)>0):
+                st.pop() # pop the last inserted element
+            elif(s[i]==")"):
+                invalid_indices.add(i)
+        
+    	invalid_indices.update(st)
+
+        # construct the string without the invalid indices
+        for i in range(len(s)):
+            if(i not in invalid_indices): # O(1) lookup in set
+                res.append(s[i])
+        
+        return "".join(res)
+```
+- Time Complexity: O(n)
+- Space Complexity: O(n)
+
 ```
 
 Intuition: find indices of invalid parenthesis. Construct the string without the invalid indices
