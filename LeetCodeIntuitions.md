@@ -589,5 +589,6 @@ def verticalOrder(self, root):
 ```
 Time Complexity: O(nlogn) because of sorting
 Space Complexity: O(n) because of various data structures used to store results
+- The intuition here is to do a breadth first visiting of each node which means it will visit each node from root to left child to right child until the end. And store the corresponding visits with column count.
 
 - Solution without sorting would be time complexity O(n)...
