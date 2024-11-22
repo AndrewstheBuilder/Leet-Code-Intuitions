@@ -395,9 +395,37 @@ def minRemoveToMakeValid(self, s):
 - Time Complexity: O(n)
 - Space Complexity: O(n)
 
-```
+More optimal solution. Save on space
+```python
+def minRemoveToMakeValid(self, s):
+    """
+    :type s: str
+    :rtype: str
+    """
+    s = list(s)  # Convert string to list for mutability
+    stack = []
 
-Intuition: find indices of invalid parenthesis. Construct the string without the invalid indices
+    # First pass: Mark invalid parentheses
+    for i in range(len(s)):
+        if s[i] == '(':
+            stack.append(i)  # Store index of '('
+        elif s[i] == ')':
+            if stack:  # Valid closing parenthesis
+                stack.pop()
+            else:  # Invalid closing parenthesis
+                s[i] = ""  # Mark for removal
+
+    # Remove leftover unmatched '(' by using indices in the stack
+    while stack:
+        s[stack.pop()] = ""
+
+    # Return the string after removing invalid parentheses
+    return "".join(s)
+```
+Above code modifies the string in place to have space complexity of O(n). We are converting the string to a new list.
+
+Overall Intuition: find indices of invalid parenthesis. Construct the string without the invalid indices
+
 
 12. Basic Calculator II Medium String Parsing expression Problem [Link](https://leetcode.com/problems/basic-calculator-ii/?envType=company&envId=facebook&favoriteSlug=facebook-thirty-days)
 
