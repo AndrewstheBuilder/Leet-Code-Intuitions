@@ -440,3 +440,27 @@ def calculate(self, s):
 
         return out[0]
 ```
+
+- [Valid Palindrome II Problem](https://leetcode.com/problems/valid-palindrome-ii/?envType=company&envId=facebook&favoriteSlug=facebook-thirty-days&role=full-stack)
+- TIme Limit Exceeded Solution and maybe using more space than necessary
+```python
+def validPalindrome(self, s):
+    def isPalindrome(ss):
+        rev = reversed(ss)
+        if(ss==ss[::-1]):
+            return True
+        return False
+    
+    # generate all possiblities of words with None or one char removed
+    res = isPalindrome(s)
+    if(res):
+        return res
+    for i in range(len(s)):
+        res = isPalindrome(s[:i]+s[i+1:])
+        if(res):
+            return True
+    return False
+
+# time: O(n^2)
+# space: O(n)
+```
