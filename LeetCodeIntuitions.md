@@ -549,3 +549,45 @@ def validPalindrome(self, s):
         return True
 ```
 - Intuition: we can delete at most 1 char. We can either go down a path where we delete the right char when the chars don't match or the left char. We have already verified the ends of the string if we are in the midst of iteration. Otherwise we can have a char we skip at the ends. Example: 'abaz' or in the midst example: 'abza'. -> the midst example becomes a sub problem as iteration happens. 1. 'abza' 2. 'bz' 3. 'b'
+
+- Problem Binary Tree Vertical Order Traversal [Problem](https://leetcode.com/problems/binary-tree-vertical-order-traversal/description/?envType=company&envId=facebook&favoriteSlug=facebook-thirty-days)
+
+- Solution
+``` python
+def verticalOrder(self, root):
+        """
+        :type root: Optional[TreeNode]
+        :rtype: List[List[int]]
+        """
+        # boundary condition
+        if(root==None):
+            return []
+
+        # store the column of each node
+        # while doing bfs
+        q = deque([(0, root)])
+        d = {}
+        while(q):
+            (coln, n) = q.popleft()
+            if(coln not in d):
+                d[coln] = []
+            d[coln].append(n.val)
+            if(n.left):
+                q.append((coln-1,n.left))
+            if(n.right):
+                q.append((coln+1, n.right))
+        # get the sorted list of keys
+        # input into resulting array what was gathered previously in dict
+        res = []
+        i = 0
+        sorted_keys = sorted(d.keys())
+        for key in sorted_keys:
+            res.append([])
+            res[i] = d[key]
+            i += 1
+        return res
+```
+Time Complexity: O(nlogn) because of sorting
+Space Complexity: O(n) because of various data structures used to store results
+
+- Solution without sorting would be time complexity O(n)...
