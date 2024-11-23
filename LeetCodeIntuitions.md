@@ -592,3 +592,34 @@ Space Complexity: O(n) because of various data structures used to store results
 - The intuition here is to do a breadth first visiting of each node which means it will visit each node from root to left child to right child until the end. And store the corresponding visits with column count.
 
 - Solution without sorting would be time complexity O(n)...
+``` python
+        # boundary condition
+        if(root==None or root.val==None):
+            return []
+
+        # store the column of each node
+        # while doing bfs
+        q = deque([(0, root)])
+        d = {}
+        # keep track of min and max col and you won't have to sort the dict at the end
+        min_col = 0
+        max_col = 0
+        while(q):
+            (coln, n) = q.popleft()
+            if(coln not in d):
+                d[coln] = []
+            if(coln>max_col):
+                max_col=coln
+            if(coln<min_col):
+                min_col=coln
+            d[coln].append(n.val)
+            if(n.left):
+                q.append((coln-1,n.left))
+            if(n.right):
+                q.append((coln+1, n.right))
+        res = []
+        for i in range(min_col, max_col+1):
+            res.append(d[i])
+        return res
+```
+- Intuition: keep track of min and max and since each new column is +1 or -1 from previous column you can iterate from min_col to max_col+1 and cover all the columns you needed
