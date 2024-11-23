@@ -710,3 +710,44 @@ def divide(self, dividend, divisor):
 - Intuition: We are going to subtract the divisor from the dividend until we get the quotient. To speed this process up double the divisor and stop before it becomes too big. Then we take care of the remainder with subtracting remainder - divisor. Make both the dividend and divisor be negative because making a negative into a positive comes with the risk of integer overflow according to the constraints of the problem.
 - What is the time complexity of this? I think it is O(logn) because the the doubling that happens in the for loop can in the worst case where divisor is 1 take care of everything. The remainder subtraction loop is O(k). n being the dividend.
 - Time Complexity: n would be the (dividend/divisor). the doubles loop is O(logn) but the remainder loop might be O(n/2) which is just O(n) not good!
+
+- Better Solution that is accepted
+- ```python
+  def divide(self, dividend, divisor):
+        if(dividend==0):
+            return 0
+
+        max_i = 2**31 - 1
+        min_i = -2**31
+        half_min_i = min_i >> 1 #divide by two by right shifting
+
+        # special edge case overflow
+        if (dividend==min_i and divisor==-1):
+            print('special case')
+            return max_i
+                
+        neg = 2
+        if(dividend>0):
+            neg -= 1
+            dividend = -dividend
+        
+        if(divisor>0):
+            neg -= 1
+            divisor = -divisor
+            
+        q = 0
+        while(divisor>=dividend):
+            d = divisor
+            n_d = 1
+            while(half_min_i<=d and d+d>=dividend):
+                n_d+=n_d
+                d += d
+            q += n_d
+            dividend -= d
+
+        if(neg==1):
+            return -q
+        return q
+  ```
+  - Time Complexity: O(log^2n) with n being the dividend
+  - Space Complexity: O(1)
