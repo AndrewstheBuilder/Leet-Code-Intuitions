@@ -787,5 +787,6 @@ def divide(self, dividend, divisor):
 	    return []
     # Time Complexity: O(n^2)
     # space complexity: O(n^2) creating new hashtable everytime we call check()
+  # above time and space complexity may be incorrect we have to consider all the input terms that are being iterated on. word length, words length, length of s
   ```
 - Intuition: go through each index of the string see if the substring starts at that index. Store a hash table of all the words and the number of their occurrences. Use that to check if the substring thats found matches the words and the number of their occurrences. (order does not matter)
