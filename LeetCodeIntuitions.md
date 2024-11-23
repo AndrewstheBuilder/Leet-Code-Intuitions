@@ -653,3 +653,59 @@ Space Complexity: O(n) because of various data structures used to store results
 - Time Complexity: O(n), Space: O(n)
 - Intuition: Do BFS while keeping track of what level you are at
 - TODO: do BFS with recursion
+
+- [Divide Two Integers Problem](https://leetcode.com/problems/divide-two-integers/)
+- First Attempted Solution Time Limit Exceeded
+```python
+def divide(self, dividend, divisor):
+        """
+        :type dividend: int
+        :type divisor: int
+        :rtype: int
+        """
+        neg = 0
+
+        # make the inputs negative to avoid issues when subtracting
+        # making them positive would cause an integer overflow issue
+        # keep track of number of negatives
+        if(dividend<0):
+            neg += 1
+        else:
+            dividend = -dividend
+        if(divisor<0):
+            neg += 1
+        else:
+            divisor = -divisor
+
+        if(divisor<dividend):
+            # divisor is a bigger value than dividend 
+            # return trunacated decimal quotient
+            return 0
+
+        doubled = divisor
+        q = 1
+        
+        # make sure next doubling does not go over dividend
+        while(doubled+doubled >= dividend):
+            q += q
+            doubled += doubled
+        remainder=dividend-doubled
+
+        # after doubling go through remainder with subtracting by divisor
+        if(remainder != 0):
+            while(remainder-divisor<=0):
+                q += 1
+                remainder -= divisor
+        
+        i_min = -2**31
+        i_max = (2**31)-1
+        if(neg==1):
+            if(-q < i_min):
+                return i_min
+            return -q
+        if(q>i_max):
+            return i_max
+        return q
+```
+- Intuition: We are going to subtract the divisor from the dividend until we get the quotient. To speed this process up double the divisor and stop before it becomes too big. Then we take care of the remainder with subtracting remainder - divisor. Make both the dividend and divisor be negative because making a negative into a positive comes with the risk of integer overflow according to the constraints of the problem.
+- What is the time complexity of this? I think it is O(logn) because the the doubling that happens in the for loop can in the worst case where divisor is 1 take care of everything. The remainder subtraction loop is O(k). n being the dividend.
