@@ -751,3 +751,41 @@ def divide(self, dividend, divisor):
   ```
   - Time Complexity: O(log^2n) with n being the dividend
   - Space Complexity: O(1)
+ 
+  - [First Leet Code Hard Substring with Concatenation of All Words](https://leetcode.com/problems/substring-with-concatenation-of-all-words/description/)
+  - Inefficient Solution
+  ``` python
+	def subStringIndices(s, words):
+	    def check(hash_t, index, l_word, n_words, s):
+		j = index
+		res = []
+		for _ in range(n_words):
+		    r = s[j:j+l_word]
+		    if(r not in hash_t):
+			# unknown word found in s
+			return []
+		    if(hash_t[r] == 0):
+			return [] # encountered too many of one word
+		    hash_t[r] -= 1
+		    res.append(j)
+		    j = j+l_word
+		return 
+	
+	    hash_og={}
+	    l_word = len(words[0])
+	    n_words = len(words)
+	    for k in range(len(words)):
+		hash_og[words[k]] = hash_og.get(words[k], 0) + 1
+	
+	    for i in range(len(s)):
+		if(i+l_word*n_words >= len(s)):
+		    return [] # we ran out of s
+		res = check(dict(hash_og), i, l_word, n_words, s)
+		if(res):
+		    # found concantenated substring
+		    return res
+	    return []
+    # Time Complexity: O(n^2)
+    # space complexity: O(n^2) creating new hashtable everytime we call check()
+  ```
+- Intuition: go through each index of the string see if the substring starts at that index. Store a hash table of all the words and the number of their occurrences. Use that to check if the substring thats found matches the words and the number of their occurrences. (order does not matter)
