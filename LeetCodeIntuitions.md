@@ -623,3 +623,33 @@ Space Complexity: O(n) because of various data structures used to store results
         return res
 ```
 - Intuition: keep track of min and max and since each new column is +1 or -1 from previous column you can iterate from min_col to max_col+1 and cover all the columns you needed
+
+- [Problem Binary Tree Level Order Traversal](https://leetcode.com/problems/binary-tree-level-order-traversal/)
+- Solution
+```python
+    def levelOrder(self, root):
+        """
+        :type root: Optional[TreeNode]
+        :rtype: List[List[int]]
+        """
+        if(root==None):
+            return []
+        q = deque([(1, root)])
+        res = []
+        res.append([root.val])
+
+        while(q):
+            lvln, n = q.popleft()
+            if(lvln>=len(res) and (n.left or n.right)):
+                res.append([])
+            if(n.left):
+                res[lvln].append(n.left.val)
+                q.append((lvln+1, n.left))
+            if(n.right):
+                res[lvln].append(n.right.val)
+                q.append((lvln+1, n.right))
+        return res
+```
+- Time Complexity: O(n), Space: O(n)
+- Intuition: Do BFS while keeping track of what level you are at
+- TODO: do BFS with recursion
