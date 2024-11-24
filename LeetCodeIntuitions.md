@@ -886,3 +886,25 @@ def divide(self, dividend, divisor):
         return []
 ```
 - Intuition: We are doing a single pass through nums there can be two numbers that add to target. We store in the hashtable all the values and the indexes we pass through. If we find the second number then the complement should be in the hash table. target = 1stnum + 2ndnum. Complement = target - 1stNum. Complement is also 2ndNum.
+
+- [Problem TwoSumII](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/)
+- Solution:
+```python
+    def twoSum(self, nums, target):
+        """
+        :type numbers: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        i = 0
+        j = len(nums)-1
+
+        while(i<j):
+            if(target>nums[i]+nums[j]):
+                i+=1
+            elif(target<nums[i]+nums[j]):
+                j -= 1
+            else:
+                return [i+1,j+1]
+```
+- Intuition: Use the two pointer approach since the array is sorted. We can add the 2 candidates get a prospect and if thew prospect is greater than target then decrease the overall prospect by taking the right pointer to the left. We know the array is sorted in increasing order. 
