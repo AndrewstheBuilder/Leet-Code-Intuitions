@@ -843,3 +843,27 @@ def divide(self, dividend, divisor):
  
 - [Problem 4Sum](https://leetcode.com/problems/4sum/)
 - I cannot create a combination by just using a single tested loop. Why? Combination involving k elements requires k nested loops.
+
+- [Problem 2Sum](https://leetcode.com/problems/two-sum/)
+- Inefficient O(n^2) solution:
+``` python
+    def twoSum(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        if(len(nums)==2):
+            return [0,1]
+        res = []
+        # generate all combinations
+        for i in range(len(nums)-1):
+            for j in range(i+1, len(nums)):
+                res.append([i, j])
+
+        # go through all combinations
+        for i in range(len(res)):
+            if(nums[res[i][0]] + nums[res[i][1]]==target):
+                return res[i]
+        return res[i] # but we will not hit this
+```
