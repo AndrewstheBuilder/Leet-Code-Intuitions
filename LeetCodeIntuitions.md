@@ -867,3 +867,22 @@ def divide(self, dividend, divisor):
                 return res[i]
         return res[i] # but we will not hit this
 ```
+- Solution that works:
+``` python
+   def twoSum(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        h = {}
+        for i in range(len(nums)):
+            complement = target-nums[i]
+            if(complement in h):
+                return [i, h[complement]]
+            h[nums[i]] = i
+
+        # we should not hit this
+        return []
+```
+- Intuition: We are doing a single pass through nums there can be two numbers that add to target. We store in the hashtable all the values and the indexes we pass through. If we find the second number then the complement should be in the hash table. target = 1stnum + 2ndnum. Complement = target - 1stNum. Complement is also 2ndNum.
