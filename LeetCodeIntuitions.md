@@ -907,4 +907,6 @@ def divide(self, dividend, divisor):
             else:
                 return [i+1,j+1]
 ```
+- Time Complexity: O(n)
+- Space Complexity: O(1)
 - Intuition: Use the two pointer approach since the array is sorted. We can add the 2 candidates get a prospect and if thew prospect is greater than target then decrease the overall prospect by taking the right pointer to the left. We know the array is sorted in increasing order. 
