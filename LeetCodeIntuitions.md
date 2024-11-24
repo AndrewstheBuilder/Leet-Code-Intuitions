@@ -788,3 +788,54 @@ def divide(self, dividend, divisor):
   ```
 - Intuition: go through each index of the string see if the substring starts at that index. Store a hash table of all the words and the number of their occurrences. Use that to check if the substring thats found matches the words and the number of their occurrences. (order does not matter)
 - My solution is wrong too. Its returning the index of the beginning of each char in words in the substring. TODO: try this one again
+
+- [Problem Next Permutation]()
+- Incorrectish solution:
+- ``` python
+    def nextPermutation(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: None Do not return anything, modify nums in-place instead.
+        """
+        if(len(nums)==1):
+            return
+        def swap(i,j,arr):
+            temp = arr[i]
+            arr[i] = arr[j]
+            arr[j] = temp
+        def reverse(start,arr):
+            i,j = start,len(nums)-1
+            while(i<j):
+                swap(i,j,arr)
+                i += 1
+                j -= 1
+
+        j = len(nums)-2
+        while j >-1 and nums[j+1]<nums[j]:
+            # traverse array from right to left
+            j -= 1
+        if(j==-1):
+            # highest permutation possible
+            # everything in descending order
+            # reverse the arr
+            reverse(0,nums)
+            return
+            
+        # largest index (j) with nums[j]<nums[j+1] found. Found pivot
+        # find smallest element to the right of j that is larger than j to replace with j
+        # array to the right is already sorted in descending order
+        # find the smallest element that is larger than the pivot j
+        i = len(nums)-1
+        while i>j and nums[i]<=nums[j]:
+            i -= 1
+        # swap the two elements
+        swap(i, j, nums)
+        # to make the smallest permutation possible reverse the order of what came after the pivot
+        # everything after the pivot is in descending order for now
+        # reverse
+        reverse(j+1, nums)
+  ```
+  - Time Complexity: O(n)
+  - Space Complexity: O(1) since we are adjusting in place
+  - Intuition: This solution is not entirely correct, but its on the right track. When we compare items lexicographically we start from the left of both comparables and work towards the right. The element with the greater value at the first instance wins the title of lexicographically greater. [2,1,3] is greater than [1,2,3]. We are looking for the smallest next possible greater permutation that is lexicographically greater. Step 1 find the first value going from right to left (because we are trying to increase the lexicographical value the smallest possible next permutation) that is the greatest index that is in ascending order arr[j] < arr[j+1]. Step 2. Look to the right of j to find the smallest value that is greater than arr[j] perform a swap. Step 3. We know values after the pivot j are in descending order. Convert it to ascending order to ensure that its the smallest possible next permutation. This is the reverse step.
+  - Current solution fails on [5,1,1] it should return [1,1,5] Which is the edge case where the entire array is in descending order so its the highest possible permutation. Reverse the entire array to go back and start again with the smallest possible permutation
