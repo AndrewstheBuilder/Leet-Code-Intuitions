@@ -942,3 +942,12 @@ def divide(self, dividend, divisor):
   - Time Complexity: O(n^2) the while loop at the end is an extension of the top while loop. The j skipping while loop does not run for each iteration of the top while loop. When the bottom while loop's condition fails it either does not go through the whole array or the top while loops condition fails too `j<k`.
   - Space Complexity: O(n)
   - Intuition same as the two sum problem. We are sorting the array then doing a search through it intelligently with two pointers. We are avoiding duplicates after the for loop. And we are avoiding duplicates inside the while loop. These can be seen as two separate states. As long as one duplicate is avoided we will end up with unique results. The for loop duplicate check is needed because at each iteration j is reset. Then inside the while loop a duplicate check is needed on k or j to avoid a duplicate while the while loop is running.
+``` python
+                    else:
+                        ans.append([nums[i],nums[j],nums[k]])
+                        j += 1
+                        k -= 1
+                        while(j<k and nums[k+1]==nums[k]):
+                            k -= 1
+```
+- Doing the duplicate while loop skip for k instead of j works as well.
