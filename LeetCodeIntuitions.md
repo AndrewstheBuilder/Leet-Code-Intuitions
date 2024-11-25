@@ -1031,6 +1031,46 @@ def divide(self, dividend, divisor):
 - [Problem Binary Tree Zigzag Level Order Traversal](https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/)
 - Difficult tree problem
 - Using BFS but with mods
-- Solution ```python
+- Solution
+```python
+    def zigzagLevelOrder(self, root):
+        """
+        :type root: Optional[TreeNode]
+        :rtype: List[List[int]]
+        """
+        if(root is None):
+            return []
+        bfs_q = deque([root, None])
+        ret = []
+        is_left = True
+        lvl_q = deque()
 
+        # bfs
+        while len(bfs_q)>0:
+            n = bfs_q.popleft()
+            if(n):
+                if(is_left):
+                    # bfs will read left to right
+                    lvl_q.append(n.val)
+                else:
+                    # move everything to the front to turn bfs left to right reading to right to left
+                    lvl_q.appendleft(n.val)
+                
+                # business as usual on usual bfs insertion
+                if n.left:
+                    bfs_q.append(n.left)
+                if n.right:
+                    bfs_q.append(n.right)
+            else:
+                # encountered level
+                ret.append(list(lvl_q))
+                is_left = not is_left
+                lvl_q = deque()
+                if(len(bfs_q)>0):
+                    # delimit the next level
+                    bfs_q.append(None)
+        return ret
 ```
+- O(n) space
+- O(n) time
+- Intuition here is to do bfs as normal, but to insert values into the return variable in reverse order if its is_right. We will receive the elements in bfs order left to right then reverse that. We have to delimit by levels so we can add an array at each level to the ret variable
