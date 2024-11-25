@@ -844,6 +844,36 @@ def divide(self, dividend, divisor):
 - [Problem 4Sum](https://leetcode.com/problems/4sum/)
 - I cannot create a combination by just using a single tested loop. Why? Combination involving k elements requires k nested loops.
 - Attempted Solution I tried to use the hashtable and complement approach from two sum. I am having problems avoiding duplicates though. I think I can just use how I solved 3sum and apply it to 4sum. The two pointer approach seems to be a general solution.
+- Working solution:
+``` python
+    def fourSum(self, nums, target):
+        if(len(nums)<4):
+            return []
+        res = []
+        nums = sorted(nums)
+        for i in range(len(nums)-2):
+            if(i==0 or nums[i-1] != nums[i]):
+                for j in range(i+1, len(nums)-1):
+                    start = j+1
+                    end = len(nums)-1
+                    if(j==i+1 or nums[j-1] != nums[j]):
+                        while(start < end):
+                            s = nums[i]+nums[j]+nums[start]+nums[end]
+                            if(s>target):
+                                end-=1
+                            elif(s<target):
+                                start+=1
+                            else:
+                                res.append([nums[i],nums[j],nums[start],nums[end]])
+                                start += 1
+                                end -= 1
+                                while(start<end and nums[start]==nums[start-1]):
+                                    # avoid duplicate sequences
+                                    start += 1
+        return res
+```
+- Time Complexity: O(n^3) last while loop is connected to the its parent loop. The child while loop is not running for every iteration of its parent's
+- Space Complexity: O(n+k) n for timsort in sorted python function. And k for the number of unique quadruplets coming out of n and will be included in res variable.
 ``` python
     def fourSum(self, nums, target):
         h = {}
