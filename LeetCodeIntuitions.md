@@ -1004,3 +1004,26 @@ def divide(self, dividend, divisor):
                             k -= 1
 ```
 - Doing the duplicate while loop skip for k instead of j works as well.
+
+- [Problem Search Insert Position](https://leetcode.com/problems/search-insert-position/description/)
+- Time Complexity O(logn) solution Space Complexity O(1):
+``` python
+    def searchInsert(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: int
+        """
+        start = 0
+        end = len(nums)-1
+        while start<=end:
+            mid = (end+start)//2
+            if(nums[mid]>target):
+                end = mid-1
+            elif(nums[mid]<target):
+                start=mid+1
+            else:
+                return mid
+        return start
+```
+- Intuition: do binary search which halves the space we are searching in every time. Use two pointers and adjust the start or end past the mid point which was already checked. We have to check the space where start==end. So when array exits start>end and start is the smallest index where target can be correctly inserted without messing up the order.
