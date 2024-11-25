@@ -1074,3 +1074,4 @@ def divide(self, dividend, divisor):
 - O(n) space
 - O(n) time
 - Intuition here is to do bfs as normal, but to insert values into the return variable in reverse order if its is_right. We will receive the elements in bfs order left to right then reverse that. We have to delimit by levels so we can add an array at each level to the ret variable
+- TODO do the DFS version of this!
