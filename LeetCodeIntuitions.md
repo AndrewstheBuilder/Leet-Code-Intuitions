@@ -843,7 +843,30 @@ def divide(self, dividend, divisor):
  
 - [Problem 4Sum](https://leetcode.com/problems/4sum/)
 - I cannot create a combination by just using a single tested loop. Why? Combination involving k elements requires k nested loops.
-
+- Attempted Solution I tried to use the hashtable and complement approach from two sum. I am having problems avoiding duplicates though. I think I can just use how I solved 3sum and apply it to 4sum. The two pointer approach seems to be a general solution.
+``` python
+    def fourSum(self, nums, target):
+        h = {}
+        added = {} # key being the indexes we just added
+        # three for loops 
+        # generating complement = target - elements
+        # check if complement is in h
+            # if true return
+        if(len(nums)<4):
+            return []
+        ans = []
+        for i in range(len(nums)-2):
+            for j in range(i+1, len(nums)-1):
+                for k in range(j+1, len(nums)):
+                    complement = target - nums[i] - nums[j] - nums[k]
+                    if complement in h and i not in added and j not in added and k not in added and h[complement] not in added :
+                        ans.append([nums[i], nums[j], nums[k], complement])
+                        added.update([i,j,k,h[complement]])
+                    h[nums[k]] = k
+                h[nums[j]] = j
+            h[nums[i]] = i
+        return ans
+```
 - [Problem 2Sum](https://leetcode.com/problems/two-sum/)
 - Inefficient O(n^2) solution:
 ``` python
