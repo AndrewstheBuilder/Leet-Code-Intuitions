@@ -1027,3 +1027,10 @@ def divide(self, dividend, divisor):
         return start
 ```
 - Intuition: do binary search which halves the space we are searching in every time. Use two pointers and adjust the start or end past the mid point which was already checked. We have to check the space where start==end. So when array exits start>end and start is the smallest index where target can be correctly inserted without messing up the order.
+
+- [Problem Binary Tree Zigzag Level Order Traversal](https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/)
+- Difficult tree problem
+- Using BFS but with mods
+- Solution ```python
+
+```
