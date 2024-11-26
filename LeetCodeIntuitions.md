@@ -1111,3 +1111,27 @@ class Solution(object):
 - Time Complexity: O(n)
 - Space Complexity: O(n) because of recursive function stack call.
 - Intuition: Use dfs. Post order traversal. Go to through left subtree and right subtree. If found p or q return True and pass it up. If a node gets passed two Trues then its the Least common ancestor. Also remember a node can count itself as a ancestor.
+
+- [Problem Least Common Ancestor III](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-iii/description/?envType=company&envId=facebook&favoriteSlug=facebook-thirty-days)
+- Pay attention this version does not have the root included only p and q and the parent.
+- Solution
+```python
+    def lowestCommonAncestor(self, p: 'Node', q: 'Node') -> 'Node':
+        path_p_r = set([p.val])
+        n = p
+        while(n.parent!=None): 
+            path_p_r.add(n.parent.val)
+            if(n.parent.val == q):
+                return q
+            n = n.parent
+        n2 = q
+        if(q.val in path_p_r):
+            return q
+        while(n2.parent!=None):
+            n2 = n2.parent
+            if(n2.val in path_p_r):
+                return n2
+        return p # we will not hit this
+```
+- Time Complexity: O(n)
+- Space Complexity: O(h) because its storing the amount of nodes in the height of the tree in the worst case 
