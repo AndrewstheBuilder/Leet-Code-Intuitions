@@ -1077,3 +1077,37 @@ def divide(self, dividend, divisor):
 - TODO do the DFS version of this!
 - Depth First Search (DFS) has three ways of visiting nodes: pre-order (root-left aub tree-right sub tree), in-order(left subtree-root-right subtree), post-order(left sub tree, right sub tree,root)
 - Breadth First Search (BFS) is a level by level traversal. From root to left to right
+
+- [Problem Lowest Common Ancestor of a Binary Tree](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/?envType=company&envId=facebook&favoriteSlug=facebook-thirty-days)
+- Solution
+```python
+class Solution(object):
+    def __init__(self):
+        self.ans = None
+    def lowestCommonAncestor(self, root, p, q):
+        """
+        :type root: TreeNode
+        :type p: TreeNode
+        :type q: TreeNode
+        :rtype: TreeNode
+        """
+        ans = None
+        def dfs(node):
+            if not node:
+                return False # at the end of the tree
+            
+            curr = node.val == p.val or node.val == q.val
+            ret_l = dfs(node.left)
+            ret_r = dfs(node.right)
+            
+            is_lca = curr + ret_l + ret_r >= 2
+            if(is_lca):
+                self.ans=node
+            return curr or ret_l or ret_r
+
+        dfs(root)
+        return self.ans
+```
+- Time Complexity: O(n)
+- Space Complexity: O(n) because of recursive function stack call.
+- Intuition: Use dfs. Post order traversal. Go to through left subtree and right subtree. If found p or q return True and pass it up. If a node gets passed two Trues then its the Least common ancestor. Also remember a node can count itself as a ancestor.
