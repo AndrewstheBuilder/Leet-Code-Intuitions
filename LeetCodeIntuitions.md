@@ -1134,4 +1134,47 @@ class Solution(object):
         return p # we will not hit this
 ```
 - Time Complexity: O(n)
-- Space Complexity: O(h) because its storing the amount of nodes in the height of the tree in the worst case 
+- Space Complexity: O(h) because its storing the amount of nodes in the height of the tree in the worst case
+
+- [Problem Random Pick With Weight] (https://leetcode.com/problems/random-pick-with-weight/?envType=company&envId=facebook&favoriteSlug=facebook-thirty-days)
+- This problem had confusing wording. But its straight forward when you think about it in terms of functions calls. Both the inputs show function calls. With the first input array being the name of the input called and the second being the arguments passed into that function call.
+- Solution A different type of Binary Search
+``` python
+import random
+class Solution:
+
+    def __init__(self, w: List[int]):
+        self.w = w 
+        self.prefix_sums = []
+        prefix_run_sum = 0
+        for i in range(len(self.w)):
+            prefix_run_sum += w[i]
+            self.prefix_sums.append(prefix_run_sum)
+        self.total = prefix_run_sum
+        
+
+    def pickIndex(self) -> int:
+        # print('self.prefix_sums',self.prefix_sums)
+        if(len(self.prefix_sums)==1):
+            return 0
+        offset = random.random()*self.total
+        start = 0
+        end = len(self.prefix_sums)
+        while(start<end):
+            mid = start + (end-start)//2
+            if(self.prefix_sums[mid]<offset):
+                start = mid+1
+            else:
+                end = mid
+        return end
+
+# Your Solution object will be instantiated and called as such:
+# obj = Solution(w)
+# param_1 = obj.pickIndex()
+```
+- Time Complexity in __init__ its O(n) for traversing through the input w. And O(n) Space Complexity for storing the prefix_sums
+For pickIndex its logn for the binary search and O(1) for extra space
+- Intuition: Imagine a number line and how the nunbers would be far apart and the bigger numbers would have wider gaps that a ball will most likely land in if thrown randomly. We use that idea to enable the prefix sums. We see if the randomly generated offset is < prefix_sum then return that index. That logic works plainly in a linear search since we go from left to right and prefix_sums is sorted in ascending order
+  	- In binary search we have to take it account that the answer could be to the left of the array even if offset < prefix_sum[i]. So we start past the midway point to the right if the prefix_sum[mid] is less than offset and if the prefix_sum[mid]>=offset we move end to mid to include that previously mid point as a possible solution.
+  	- The end is the actual length to calculate actual midway length at the beginning
+  	- we do start+mid to get the accurate value of mid. Because at the point its just the length of the mid and not where the midway point is actually at. The midway point is found between [start,end]
