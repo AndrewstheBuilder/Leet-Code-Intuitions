@@ -1075,5 +1075,5 @@ def divide(self, dividend, divisor):
 - O(n) time
 - Intuition here is to do bfs as normal, but to insert values into the return variable in reverse order if its is_right. We will receive the elements in bfs order left to right then reverse that. We have to delimit by levels so we can add an array at each level to the ret variable
 - TODO do the DFS version of this!
-- Depth First Search (DFS) has three ways of visiting nodes: pre-order (root-left-right), in-order(left-root-right), post-order(left, right,root)
-- Breadth First Search (BFS) is a level by level traversal.
+- Depth First Search (DFS) has three ways of visiting nodes: pre-order (root-left aub tree-right sub tree), in-order(left subtree-root-right subtree), post-order(left sub tree, right sub tree,root)
+- Breadth First Search (BFS) is a level by level traversal. From root to left to right
