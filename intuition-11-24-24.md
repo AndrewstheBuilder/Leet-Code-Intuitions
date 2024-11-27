@@ -72,3 +72,33 @@ global running_sum = 0
         - Then we have a case where we add to the total and when we go one level deeper and iterate on the next nested list.
 - Time Complexity: O(n) we visit each element once
 - Space Complexity: O(n) imagine each element is a nested list we will have a function call that we need to keep track of for each element.
+3. [71. Simplify Path](https://leetcode.com/problems/simplify-path/description/?envType=company&envId=facebook&favoriteSlug=facebook-thirty-days)
+  - Sort of difficult string parsing problem because some key intuitions I missed!
+  - Solution:
+```python
+def simplifyPath(self, path: str) -> str:
+        ret = []
+
+        components = path.split('/')
+
+        for c in components:
+            if(c==''):
+                continue
+            elif(c=='..'):
+                if(ret):
+                    # ignore last directory
+                    ret.pop()
+            elif(c=='.'):
+                continue # stay at current directory
+            else:
+                ret.append(c)
+
+        return '/'+'/'.join(ret)
+```
+- O(n) space and time
+- Intuitions I missed:
+          - Doing split on '/' will get rid of the '/' and replace them with spaces while also splitting out the components that are not '/'s by delimiting with '/'s. That takes care of my '/' issues. I can join them on '/' at the end
+          - Now we are only inserting directories into the stack
+          - Using a stack I can pop the last inserted directory if we encounter '..' and there is something in stack.
+          - I just continue if I encounter '.'
+          - I do not have to worry about '/'s!!
