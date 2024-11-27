@@ -29,3 +29,46 @@ def myPow(self, x: float, n: int) -> float:
     - so the last return will be 1 * x * x^(n-1).
     - the n-1 is not explicitedly in the code. Its a result of doing x*x over and over again so n will be a exponentiated 2. Then since its odd there is one more x left over by design!
 - Time Complexity: O(logn) halving the search space. (n/2^k) = 1 in the search space. that is either exactly 1 in the search space or close to it. take n = 2^k log of both side log(n) = log(2^k) --> log(n) = k
+
+2. [Problem Nested List Weight Sum](https://leetcode.com/problems/nested-list-weight-sum/?envType=company&envId=facebook&favoriteSlug=facebook-thirty-days)
+- Attempted Not Working Solution:
+```python
+global running_sum = 0
+    def dfs(l, depth, i):
+        # base case
+        if(i==len(l)):
+            return
+
+        if(l[i].isInteger()):
+            running_sum += depth * l[i].getInteger()
+            dfs(l, depth, i+1)
+        if(l[i].getList()):
+            dfs(l[i].getList(),depth+1, 0)
+        return
+
+    dfs(nestedList, 1, 0)
+```
+- Incorrect and inefficient ideas. I was going to keep a global variable which could affect code debugging if other parts of the programming is using it and maybe even thread safety if other parts of the programming are using it in different threads. I also wanted to pass and keep track of the index which is fine for the first nested list we run into but then once we get out there is no index information.
+  
+- Solution:
+```python
+    def depthSum(self, nestedList: List[NestedInteger]) -> int:
+        def dfs(nested_l, depth):
+            total = 0
+            for nested in nested_l:
+                if nested.isInteger():
+                    total += nested.getInteger() * depth
+                else:
+                    total += dfs(nested.getList(), depth+1)
+            return total
+
+        return dfs(nestedList, 1)
+```
+- Intuitions:
+        - Keep track of the total in the recursive function by returning it at the end. This will pass it back to the function calls and the answer will bubble up.
+        - keep track of the index of each list in one instance of the function so each list gets iterated in one instance. If we encounter a nested list we will go to another instance of the function to iterate through the list
+        - This way we will iterate on the nested lists and integers at each level. If you can name each for loop in each function call and say its distinct you can think that each for loop will handle each level of the nestedList.
+        - The base case is when we are done iterating through the list and return the total
+        - Then we have a case where we add to the total and when we go one level deeper and iterate on the next nested list.
+- Time Complexity: O(n) we visit each element once
+- Space Complexity: O(n) imagine each element is a nested list we will have a function call that we need to keep track of for each element.
