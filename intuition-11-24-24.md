@@ -149,3 +149,101 @@ Solution
                 return total
   ```
 - Important thing here is the time and space complexity differences between __init__ and the dotProduct function. __init__ is where we iterate through the input O(n) and create the data structure to store the sparse array O(L). Then dotProduct we iterate through the dict O(L) time complexity and create new no space with reference to the input O(1).
+
+6.[146. LRU Cache](https://leetcode.com/problems/lru-cache/editorial/?envType=company&envId=facebook&favoriteSlug=facebook-thirty-days)
+Solution:
+```python
+class LRUCache:
+
+    def __init__(self, capacity: int):
+        self.capacity = capacity
+        self.cache = {}
+        self.head = LNode(key=None)
+        self.tail = LNode(key=None)
+        self.head.next = self.tail
+        self.tail.prev = self.head
+
+    def get(self, key: int) -> int:
+        ret = self.cache.get(key,-1)
+        if(ret != -1):
+            self._remove(ret)
+            self.cache[key] = self._add(key, ret.val)
+            return ret.val
+        return -1
+
+    def put(self, key: int, value: int) -> None:
+        if key in self.cache:
+            self._remove(self.cache[key])
+            self.cache[key] = self._add(key, value)
+        else:
+            self.cache[key] = self._add(key,value)
+
+        # capacity check
+        if(len(self.cache.keys())>self.capacity):
+            lru_node=self.head.next
+            self._remove(lru_node)
+            self.cache.pop(lru_node.key, "not Found")
+    
+    def _add(self, key, value):
+        lastVal = self.tail.prev
+        newVal = LNode(key, value, self.tail, lastVal)
+        lastVal.next = newVal
+        self.tail.prev = newVal
+        return newVal
+    
+    def _remove(self, node):
+        '''
+        1. prev - node - next
+        2. prev - next
+        '''
+        node.prev.next = node.next
+        node.next.prev = node.prev
+
+class LNode:
+     def __init__(self, key, val=None, nextNode=None, prev=None):
+        self.next = nextNode
+        self.prev = prev
+        self.val = val
+        self.key = key
+
+# Your LRUCache object will be instantiated and called as such:
+# obj = LRUCache(capacity)
+# param_1 = obj.get(key)
+# obj.put(key,value)
+```
+Intuition: Doubly linked list allows for removal and addition of element in O(1) time. Implement it manually without using python specific functions. 
+- I ran into problems because I doubted what it means to remove and add an element. And I wanted to make sure that the doubly linked list always had a head or tail but could not think of adequete test cases. I need to test instead of thinking in my head. The test case would be to remove an element when capacity is at 1. And to make sure init is correct.
+- I also did not consider the edge cases when I remove or add an element.
+- I forgot that I needed to point to the key of the cache just like the cache points to the node in doubly linked list.
+          - The cache value is not the actual value but the LinkedList node that contains the value.
+Python Library Solution uses a ordered dict.
+```python
+import collections
+
+
+class LRUCache:
+    def __init__(self, capacity: int):
+        self.capacity = capacity
+        self.dic = collections.OrderedDict()
+
+    def get(self, key: int) -> int:
+        if key not in self.dic:
+            return -1
+
+        self.dic.move_to_end(key)
+        return self.dic[key]
+
+    def put(self, key: int, value: int) -> None:
+        if key in self.dic:
+            self.dic.move_to_end(key)
+
+        self.dic[key] = value
+        if len(self.dic) > self.capacity:
+            self.dic.popitem(False)
+
+
+# Your LRUCache object will be instantiated and called as such:
+# obj = LRUCache(capacity)
+# param_1 = obj.get(key)
+# obj.put(key,value)
+```
