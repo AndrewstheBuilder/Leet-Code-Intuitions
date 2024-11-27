@@ -104,7 +104,7 @@ def simplifyPath(self, path: str) -> str:
           - I do not have to worry about '/'s!!
 
 4. [Binary Tree Right Side View](https://leetcode.com/problems/binary-tree-right-side-view/?envType=company&envId=facebook&favoriteSlug=facebook-thirty-days)
-Solution
+- Solution
 ```python
     def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
         def bfs(node):
@@ -132,7 +132,7 @@ Solution
           - Append the last added value in stack because that is the right most element of the previous level if the stack has any elements at all. Remember if there are no elements there are no nodes on the previous level and we are done traversing the tree.
 - All the tree traversals: <img width="837" alt="traversals" src="https://github.com/user-attachments/assets/f2786168-591f-43bd-a208-a4700f67375f">
 5. [1570. Dot Product of Two Sparse Vectors](https://leetcode.com/problems/dot-product-of-two-sparse-vectors/description/?envType=company&envId=facebook&favoriteSlug=facebook-thirty-days)
-  Solution
+  - Solution
   ```python
         class SparseVector:
             def __init__(self, nums: List[int]):
@@ -151,7 +151,7 @@ Solution
 - Important thing here is the time and space complexity differences between __init__ and the dotProduct function. __init__ is where we iterate through the input O(n) and create the data structure to store the sparse array O(L). Then dotProduct we iterate through the dict O(L) time complexity and create new no space with reference to the input O(1).
 
 6.[146. LRU Cache](https://leetcode.com/problems/lru-cache/editorial/?envType=company&envId=facebook&favoriteSlug=facebook-thirty-days)
-Solution:
+- Solution:
 ```python
 class LRUCache:
 
@@ -211,12 +211,13 @@ class LNode:
 # param_1 = obj.get(key)
 # obj.put(key,value)
 ```
-Intuition: Doubly linked list allows for removal and addition of element in O(1) time. Implement it manually without using python specific functions. 
+- Intuition: Doubly linked list allows for removal and addition of element in O(1) time. Implement it manually without using python specific functions. 
 - I ran into problems because I doubted what it means to remove and add an element. And I wanted to make sure that the doubly linked list always had a head or tail but could not think of adequete test cases. I need to test instead of thinking in my head. The test case would be to remove an element when capacity is at 1. And to make sure init is correct.
 - I also did not consider the edge cases when I remove or add an element.
 - I forgot that I needed to point to the key of the cache just like the cache points to the node in doubly linked list.
           - The cache value is not the actual value but the LinkedList node that contains the value.
-Python Library Solution uses a ordered dict.
+  
+- Python Library Solution uses a ordered dict.
 ```python
 import collections
 
