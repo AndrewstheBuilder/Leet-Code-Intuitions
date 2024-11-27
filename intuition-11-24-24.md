@@ -102,3 +102,31 @@ def simplifyPath(self, path: str) -> str:
           - Using a stack I can pop the last inserted directory if we encounter '..' and there is something in stack.
           - I just continue if I encounter '.'
           - I do not have to worry about '/'s!!
+
+4. [Binary Tree Right Side View](https://leetcode.com/problems/binary-tree-right-side-view/?envType=company&envId=facebook&favoriteSlug=facebook-thirty-days)
+Solution
+```python
+    def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
+        def bfs(node):
+            if(node==None):
+                return []
+            stack = deque([node, None])
+            ret = [node.val]
+            while(len(stack)>0):
+                n = stack.popleft()
+                if(n!=None):
+                    if(n.left):
+                        stack.append(n.left)
+                    if(n.right):
+                        stack.append(n.right)
+                else:
+                    if(stack):
+                        ret.append(stack[-1].val) # assume get by value and not reference
+                        stack.append(None) # new level
+            return ret
+        return bfs(root)
+```
+- Time Complexity and Space Complexity O(n)
+- Intuition: We are doing a level by level traversal with BFS. Keeping track of when we reach the end of the level by using None. We append a None when we reach the end of the previous level that way it delimits the end of the next level.
+          - Once we go through all the elements of the previous level we should have the next level appended to stack
+          - Append the last added value in stack because that is the right most element of the previous level if the stack has any elements at all. Remember if there are no elements there are no nodes on the previous level and we are done traversing the tree.
