@@ -130,3 +130,5 @@ Solution
 - Intuition: We are doing a level by level traversal with BFS. Keeping track of when we reach the end of the level by using None. We append a None when we reach the end of the previous level that way it delimits the end of the next level.
           - Once we go through all the elements of the previous level we should have the next level appended to stack
           - Append the last added value in stack because that is the right most element of the previous level if the stack has any elements at all. Remember if there are no elements there are no nodes on the previous level and we are done traversing the tree.
+- All the tree traversals: <img width="837" alt="traversals" src="https://github.com/user-attachments/assets/f2786168-591f-43bd-a208-a4700f67375f">
+
