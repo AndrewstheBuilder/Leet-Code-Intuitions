@@ -248,7 +248,7 @@ class LRUCache:
 # param_1 = obj.get(key)
 # obj.put(key,value)
 ```
-7. [1091. Shortest Path in Binary Matrix](https://leetcode.com/problems/shortest-path-in-binary-matrix/description/?envType=company&envId=facebook&favoriteSlug=facebook-thirty-days)
+7. [1091. Shortest Path in Binary Matrix 2D Graph Problem](https://leetcode.com/problems/shortest-path-in-binary-matrix/description/?envType=company&envId=facebook&favoriteSlug=facebook-thirty-days)
 - Attempted Solution(not working)
 ```python
    def shortestPathBinaryMatrix(self, grid: List[List[int]]) -> int:
@@ -294,3 +294,4 @@ class LRUCache:
         return bfs(grid, i=0,j=0)
 ```
 - I attempted this long ass solution its probably a sign that its not correct. I heard BFS and thought about finding all the possible children. This is how I went about trying to do it and its massively infficient.
+- To find the shortest path in a graph we should use BFS
