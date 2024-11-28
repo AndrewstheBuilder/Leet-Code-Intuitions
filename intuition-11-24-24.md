@@ -336,4 +336,21 @@ class LRUCache:
 - Intuition: Do BFS for grid search problem. There is only 8 directions you can go and you can calculate the offsets for all 8 directions. so that is why you can create the get_neighbors(). From there its pretty straight forward.
         - I did not need to keep a ans variable because the shortest ans is the one I reach first so return d immediately upon reaching the end of the grid.
         - return early if you have an unreachable path
-        - that getNeighbors() function is a iterator. the yield keyword makes it so
+        - that getNeighbors() function is a iterator. the yield keyword makes it so.
+
+- [1762: Buildings with an Ocean View](https://leetcode.com/problems/buildings-with-an-ocean-view/description/?envType=company&envId=facebook&favoriteSlug=facebook-thirty-days)
+- Solution
+```python
+    def findBuildings(self, heights: List[int]) -> List[int]:
+        j = len(heights)-1
+        biggestHeight = -1
+        ret = deque()
+        while j>=0:
+            if(biggestHeight<heights[j]):
+                biggestHeight = heights[j]
+                ret.appendleft(j)
+            j-=1
+
+        return list(ret)
+```
+- O(n) space and time complexity
