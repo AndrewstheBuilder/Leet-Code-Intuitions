@@ -248,3 +248,49 @@ class LRUCache:
 # param_1 = obj.get(key)
 # obj.put(key,value)
 ```
+7. [1091. Shortest Path in Binary Matrix](https://leetcode.com/problems/shortest-path-in-binary-matrix/description/?envType=company&envId=facebook&favoriteSlug=facebook-thirty-days)
+- Attempted Solution(not working)
+```python
+   def shortestPathBinaryMatrix(self, grid: List[List[int]]) -> int:
+        def bfs(grid,i,j):
+            s=deque([(i,j,1)])
+            visited = set((0,0))
+            ans = 20001 #max answer is 10000
+            n = len(grid)
+            while(s):
+                (x,y,l) = s.popleft()
+                if(grid[x][y]==1):
+                    # can't be at 1
+                    continue
+                if(x==n-1 and y==n-1 and l<ans):
+                    # arrived at final bottom right square
+                    ans=l # found shorter path
+                    continue
+                if(x+1<n and (x+1,y) not in visited):
+                    s.append((x+1,y,l+1))
+                    visited.add((x+1,y))
+                elif(x-1>=0 and(x-1,y) not in visited):
+                    s.append((x-1,y,l+1))
+                    visited.add((x-1,y))
+                elif(y-1>=0 and (x,y-1) not in visited):
+                    s.append((x,y-1,l+1))
+                    visited.add((x,y-1))
+                elif(y+1 < n and (x,y+1) not in visited):
+                    s.append((x,y+1,l+1))
+                    visited.add((x,y+1))
+                elif(x+1<n and y+1 < n and (x+1,y+1) not in visited):
+                    s.append((x+1,y+1,l+1))
+                    visited.add((x+1,y+1))
+                elif(x+1<n and y-1 >= 0 and (x+1,y-1) not in visited):
+                    s.append((x+1,y-1,l+1))
+                    visited.add((x+1,y-1))
+                elif(x-1>=0 and y+1 < n and (x-1,y+1) not in visited):
+                    s.append((x-1,y+1,l+1))
+                    visited.add((x-1,y+1))
+                elif(x-1>=0 and y-1 >=0 and (x-1,y-1) not in visited):
+                    s.append((x-1,y-1,l+1))
+                    visited.add((x-1,y-1))
+            return -1 if ans == 20001 else ans
+        return bfs(grid, i=0,j=0)
+```
+- I attempted this long ass solution its probably a sign that its not correct. I heard BFS and thought about finding all the possible children. This is how I went about trying to do it and its massively infficient.
