@@ -295,3 +295,45 @@ class LRUCache:
 ```
 - I attempted this long ass solution its probably a sign that its not correct. I heard BFS and thought about finding all the possible children. This is how I went about trying to do it and its massively infficient.
 - To find the shortest path in a graph we should use BFS
+- Efficient Solution
+```python
+    def shortestPathBinaryMatrix(self, grid: List[List[int]]) -> int:
+        n = len(grid)-1
+        q = deque([(0,0,1)])
+        visited = set((0,0))
+        # MAX_INT=200000
+        # ans = MAX_INT
+
+        if(grid[0][0] != 0 or grid[n][n] != 0):
+            return -1 # no possible path
+
+        directions = [(0,1),(1,0),(1,1),(-1,0),(0,-1),(-1,-1), (1,-1),(-1,1)]
+
+        def get_neighbors(x,y,n,visited,grid):
+            for i,j in directions:
+                new_row = x+i
+                new_col = y+j
+                if (new_row < 0 or new_row>n or new_col<0 or new_col>n or (new_row, new_col) in visited):
+                    continue
+                if(grid[new_row][new_col] != 0):
+                    continue
+                yield (new_row, new_col)
+
+        while(q):
+            (x,y,d) = q.popleft()
+            # if(x==n and y==n and d<ans):
+                # ans = d
+            if(x==n and y==n):
+                return d
+            for new_row, new_col in get_neighbors(x,y,n,visited,grid):
+                visited.add((new_row, new_col))
+                q.append((new_row, new_col,d+1))
+        # return ans if ans!=MAX_INT else -1
+        return -1
+```
+- Time Complexity O(n) n being the total amount of cells in the grid
+- Space Complexity O(n)
+- Intuition: Do BFS for grid search problem. There is only 8 directions you can go and you can calculate the offsets for all 8 directions. so that is why you can create the get_neighbors(). From there its pretty straight forward.
+        - I did not need to keep a ans variable because the shortest ans is the one I reach first so return d immediately upon reaching the end of the grid.
+        - return early if you have an unreachable path
+        - that getNeighbors() function is a iterator. the yield keyword makes it so
