@@ -393,3 +393,28 @@ class LRUCache:
 - Second Intuition store the sum at index in hash map. Get the sum[start,end] by seeing if complement is in hashmap. Complement is sum[some_other_index_from_before] and k = sum[curr]-sum[some_other_index_from_before] which can be rewritten for the complement we are searching for by calculating sum[curr]-k=sum[some_other_index_from_before]
           - Also we get the sums where it just equals k
           - We have to insert into hashmap after checking complement. Edge case nums=[1] k=0. 1-0=1 and 1 is in hashmap but its not a sum from some other index that came before. 1-1=0. But we cannot subtract the value at the index from itself that is wrong math for finding the complement.
+
+- [Problem Merge Intervals](https://leetcode.com/problems/merge-intervals/?envType=company&envId=facebook&favoriteSlug=facebook-thirty-days)
+- Solution
+```python
+    def merge(self, intervals: List[List[int]]) -> List[List[int]]:  
+        intervals = sorted(intervals, key=lambda inter: inter[0])    
+        ret = [intervals[0]]
+        for i in range(1,len(intervals)):
+            prev = ret.pop()
+            curr = intervals[i]
+            if(prev[1]>=curr[0]):
+                maxElem = prev[1] if prev[1]>curr[1] else curr[1]
+                ret.append([prev[0],maxElem])
+            else:
+                ret.append(prev)
+                ret.append(curr)
+        return ret
+```
+- Time Complexity: O(nlogn)
+- Space Complexity: O(n)
+- I had to sort the array. They were being quiet about sorting it or not. I have to convince myself the sorting is correct. I am sorting by the first part of the array arr[0] and not arr[1]
+          - Example:
+          - [[2,4],[4,6],[5,7]].
+          - The array is in ascending order on the first part. But the second part we not really sure about. That is what we have to check is in the interval or not. The second array could be in the interval of the first one. but not vice versa because we sorted by arr[0]
+  
