@@ -480,3 +480,32 @@ class LRUCache:
         return incorrect
 ```
 - I first had a stack based solution. But its not necessary for this problem. I just have to match the number of open brackets to the closed brackets. Just need to store an integer.
+
+- [Sum Root to Leaf Numbers]()
+- Recursive DFS Solution
+```python
+   def sumNumbers(self, root: Optional[TreeNode]) -> int:
+        # since one has to visit all nodes the best possible time complexity is linear
+            # we can improve on space!
+        # DFS preorder -> root -> Left -> Right
+            if root==None:
+                return 0
+            def dfs(node, num, total):
+                if node:
+                    if(node.left==None and node.right==None):
+                        # encountered leaf
+                        total += num
+                        return total
+                    if node.left:
+                        newNum = num*10 + node.left.val
+                        total = dfs(node.left, newNum, total)
+                    if node.right:
+                        newNum = num*10 + node.right.val
+                        total = dfs(node.right, newNum, total)
+                return total
+            return dfs(root, num=root.val,total=0)
+```
+- Intuition: Visit the nodes preorder so it goes root -> left subtree -> right subtree
+-         - If you encounter leaf then visit the node otherwise ignore the visitation.
+-         - Each function stack gets its own version of num. Hence why we had to do newNum
+-             -  The current function gets the total returned from its recursive call and gets the total updated
