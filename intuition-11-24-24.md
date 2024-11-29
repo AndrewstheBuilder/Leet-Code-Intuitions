@@ -417,4 +417,43 @@ class LRUCache:
           - Example:
           - [[2,4],[4,6],[5,7]].
           - The array is in ascending order on the first part. But the second part we not really sure about. That is what we have to check is in the interval or not. The second array could be in the interval of the first one. but not vice versa because we sorted by arr[0]
+
+- [Problem Custom Sort String](https://leetcode.com/problems/custom-sort-string/?envType=company&envId=facebook&favoriteSlug=facebook-thirty-days)
+- Solutions:
+```python
+    def customSortString(self, order: str, s: str) -> str:
+        if(len(order)==1 or len(s)==1):
+            return s
+            
+        freq_table = {}
+        for i in range(len(s)):
+            freq_table[s[i]] = freq_table.get(s[i],0)+1
+        
+        ret = []
+        for i in range(len(order)):
+            if order[i] in freq_table:
+                # attach to return when encountered in order
+                # according to the freq gathered from s
+                ret.extend([order[i]]*freq_table[order[i]])
+                del freq_table[order[i]]
+        for key in freq_table:
+            # get remaining elements in freq_table that are not in order
+            ret.extend([key]*freq_table[key])
+        return ''.join(ret)
+    # Time Complexity: O(n), Space Complexity: O(n)
+
+    def customSortString(self, order: str, s: str) -> str:
+        if len(order)==1 or len(s)==1:
+            return s
+
+        ordered_dict = {value: index for index, value in enumerate(order)}
+        s = sorted(s, key=lambda x:ordered_dict.get(x, float('inf')))
+        return ''.join(s)
+    # remember to look at input and output to see how the solution should be implemented
+        # input/output is the best source of information
+    # Time Complexity: O(nlogn), Space Complexity: O(n)
+```
+- first solution I create a custom comparator by iterating through s and looking at the ranking established by order for each s. If s[i] is not in order then make it infinity ranked.
+- second solution create a frequency table from s then iterate through order and add in s to ret the number of times it occurs in s.
+- Don't forget to look over your solution line by line and run through a possible input/output. Make sure to include edge cases that can be reasonably walked through like s==1 or order==1
   
