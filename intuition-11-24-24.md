@@ -584,3 +584,45 @@ class LRUCache:
         return total
 ```
 - Time Complexity O(n) we are still visiting every node. Space Complexity O(1).
+
+- [Problem Top K Frequent Elements](https://leetcode.com/problems/top-k-frequent-elements/?envType=company&envId=facebook&favoriteSlug=facebook-thirty-days)
+- Solution
+```python
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        counts = Counter(nums)
+        heap = []
+        size = 0
+        for key in counts:
+            heapq.heappush(heap,(counts[key], key)) # you can store tuples in heaps. The ranking will be determined by the first element in the tuple.
+            size += 1
+            if(size>k):
+                # this will remove the min
+                heapq.heappop(heap)
+        ret = []
+        j = 0
+        while j < k:
+            ret.append(heapq.heappop(heap)[1])
+            j += 1
+        return ret
+    # Time Complexity: O(nlogk)
+    # Space Complexity: O(n)
+```
+```python
+# same solution less code
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]: 
+        # O(1) time 
+        if k == len(nums):
+            return nums
+        
+        # 1. Build hash map: character and how often it appears
+        # O(N) time
+        count = Counter(nums)   
+        # 2-3. Build heap of top k frequent elements and
+        # convert it into an output array
+        # O(N log k) time
+        return heapq.nlargest(k, count.keys(), key=count.get) # TODO understand heapq.nlargest api
+```
+- Intuition use a min heap(default heap implementation) of size k. Be able to explain what a heap is. A complete binary tree with ordering of parent vs. child nodes of either max or min. I also used the Counter python api to make a dict of values and their associated counts.
+- Time Complexity might be a little hard based on the editorial talking about (N-k) for the first loop. It says after the first k inserts the push/pop starts and it starts to affect the time complexity like this (N-k)*logk which makes sense now that I have wrote it out.
+- TODO: understand the quick select algorithm.
+- I really have to be able to ask clarifying questions, explain my solution/make sure the interviewer understands it, code it and test it with my own test cases in 15 minutes!!! Really double down on this.
