@@ -535,3 +535,52 @@ class LRUCache:
 - O(n) time and O(H) space with H being the height of the tree
 - stack based implementation of recursive dfs. No advantages just wanted to do it iteratively after doing it recursively.
 - One clarifying question I should ask is if the binary tree is guaranteed to be balanced or not
+
+- Morris Algo Solution(HARD!!!) I really hope the interviewer does not ask this one
+```python
+    # Morris Preorder Traversal
+    # will give us constant space solution and about the same time complexity but we have to modify the tree
+    # if we clone the tree that defeats the point of using this algorithm to have constant space.
+    # we are still visiting the tree root -> left -> right
+    # special aspect of this it allows us to go back to the ancestor after visiting the child through the use of threads
+    def sumNumbers(self, root: Optional[TreeNode]) -> int:
+        total = 0
+        num = 0
+        while root:
+            if root.left:
+                pred = root.left
+                # go to left subtree then go the right to find pred
+                steps = 1
+                while pred.right and pred.right!=root:
+                    pred = pred.right
+                    steps += 1
+                if pred.right==None:
+                    # create thread
+                    pred.right = root
+                    # visit root because we are about to move on from it
+                    num = num*10+root.val
+                    root = root.left
+                else:
+                    if pred.left==None:
+                        # pred is leaf node
+                        total += num
+                    # back at ancestor
+                    # this part of the tree is explored -> backtrack to where root is
+                    for _ in range(steps):
+                        num//=10
+                    # remove thread to ancestor and move to right subtree
+                    pred.right=None
+                    root=root.right
+            else:
+                # if there is no left child
+                # then just go right
+
+                # visit the node
+                num = num*10+root.val
+                if root.right is None:
+                    # we are at leaf
+                    total += num
+                root=root.right
+        return total
+```
+- Time Complexity O(n) we are still visiting every node. Space Complexity O(1).
