@@ -505,7 +505,31 @@ class LRUCache:
                 return total
             return dfs(root, num=root.val,total=0)
 ```
+- O(n) time complexity because we have to visit every node
+- O(n) space complexity because we have to keep the function in the call stack when its called recursively
 - Intuition: Visit the nodes preorder so it goes root -> left subtree -> right subtree
--         - If you encounter leaf then visit the node otherwise ignore the visitation.
--         - Each function stack gets its own version of num. Hence why we had to do newNum
--             -  The current function gets the total returned from its recursive call and gets the total updated
+        - If you encounter leaf then visit the node otherwise ignore the visitation.
+        - Each function stack gets its own version of num. Hence why we had to do newNum
+        -  The current function gets the total returned from its recursive call and gets the total updated
+```python
+            if root == None:
+                return 0
+            q = deque([(root, root.val)])
+            total = 0
+            while q:
+                node,num = q.popleft()
+                if node:
+                    if node.left == None and node.right==None:
+                        # if leaf node
+                        total += num
+                    else:
+                        if node.left:
+                            newNum = num*10+node.left.val
+                            q.append((node.left, newNum))
+                        if node.right:
+                            newNum = num*10+node.right.val
+                            q.append((node.right, newNum))
+
+            return total
+```
+- stack based implementation of recursive dfs. No advantages just wanted to do it iteratively after doing it recursively.
