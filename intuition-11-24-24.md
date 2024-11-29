@@ -354,3 +354,42 @@ class LRUCache:
         return list(ret)
 ```
 - O(n) space and time complexity
+
+- [Subarray Sum Equals K](https://leetcode.com/problems/subarray-sum-equals-k/?envType=company&envId=facebook&favoriteSlug=facebook-thirty-days)
+- Solution
+```
+# Time Complexity: O(n^2), Space Complexity: O(1)
+    def subarraySum(self, nums: List[int], k: int) -> int:
+        total = 0
+        for i in range(len(nums)):
+            sum = 0
+            for j in range(i,len(nums)):
+                sum += nums[j]
+                if(sum==k):
+                    total += 1
+        return total
+    # Time Complexity: O(n), Space Complexity: O(n)
+    def subarraySum(self, nums: List[int], k: int) -> int:
+        total = 0
+        sum = 0
+        hash = {}
+        for i in range(len(nums)):
+            sum += nums[i]
+            complement = sum-k
+            if(complement in hash):
+                # sum-complement=k
+                # complement being a sum to another index
+                # (sum-complement) this gets sum of a subarray if the complement exists. 
+                # sum(subarray[complement_sum_i:i+1])
+                total += hash.get(complement)
+            hash[sum]=hash.get(sum,0)+1 # add this after so we do not count sum[i]==k twice
+        # get total += instances where sum[i]==k
+        total += hash.get(k, 0)
+        return total
+```
+- Two solutions above.
+- First Intuition get the sum at sum[start:end] with start being in the first for loop and end being in the second for loop.
+   - You get the sum by for i in range(start,end). And since subarrays are contigouous you can do sum[i] = sum[i-1]+nums[i]
+- Second Intuition store the sum at index in hash map. Get the sum[start,end] by seeing if complement is in hashmap. Complement is sum[some_other_index_from_before] and k = sum[curr]-sum[some_other_index_from_before] which can be rewritten for the complement we are searching for by calculating sum[curr]-k=sum[some_other_index_from_before]
+          - Also we get the sums where it just equals k
+          - We have to insert into hashmap after checking complement. Edge case nums=[1] k=0. 1-0=1 and 1 is in hashmap but its not a sum from some other index that came before. 1-1=0. But we cannot subtract the value at the index from itself that is wrong math for finding the complement.
