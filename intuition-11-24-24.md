@@ -533,3 +533,4 @@ class LRUCache:
             return total
 ```
 - stack based implementation of recursive dfs. No advantages just wanted to do it iteratively after doing it recursively.
+- One clarifying question I should ask is if the binary tree is guaranteed to be balanced or not
