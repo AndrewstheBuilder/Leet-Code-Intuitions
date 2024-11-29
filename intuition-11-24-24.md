@@ -506,7 +506,7 @@ class LRUCache:
             return dfs(root, num=root.val,total=0)
 ```
 - O(n) time complexity because we have to visit every node
-- O(n) space complexity because we have to keep the function in the call stack when its called recursively
+- O(H) space complexity with H being the height of the tree because we have to keep the function in the call stack when its called recursively
 - Intuition: Visit the nodes preorder so it goes root -> left subtree -> right subtree
         - If you encounter leaf then visit the node otherwise ignore the visitation.
         - Each function stack gets its own version of num. Hence why we had to do newNum
@@ -532,5 +532,6 @@ class LRUCache:
 
             return total
 ```
+- O(n) time and O(H) space with H being the height of the tree
 - stack based implementation of recursive dfs. No advantages just wanted to do it iteratively after doing it recursively.
 - One clarifying question I should ask is if the binary tree is guaranteed to be balanced or not
