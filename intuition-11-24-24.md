@@ -456,4 +456,27 @@ class LRUCache:
 - first solution I create a custom comparator by iterating through s and looking at the ranking established by order for each s. If s[i] is not in order then make it infinity ranked.
 - second solution create a frequency table from s then iterate through order and add in s to ret the number of times it occurs in s.
 - Don't forget to look over your solution line by line and run through a possible input/output. Make sure to include edge cases that can be reasonably walked through like s==1 or order==1
-  
+
+- [Minimum Add to Make Parenthesis](https://leetcode.com/problems/minimum-add-to-make-parentheses-valid/?envType=company&envId=facebook&favoriteSlug=facebook-thirty-days)
+- Solution
+```python
+    def minAddToMakeValid(self, s: str) -> int:
+        if(len(s)==0):
+            return 0
+        incorrect = 0
+        open_bracket = 0
+        # st = []
+        for i in range(len(s)):
+            if(s[i]=='('):
+                open_bracket += 1
+                # st.append(i)
+            else:
+                if(open_bracket==0):
+                    incorrect += 1
+                    continue
+                # st.pop()
+                open_bracket -= 1
+        incorrect += open_bracket
+        return incorrect
+```
+- I first had a stack based solution. But its not necessary for this problem. I just have to match the number of open brackets to the closed brackets. Just need to store an integer.
