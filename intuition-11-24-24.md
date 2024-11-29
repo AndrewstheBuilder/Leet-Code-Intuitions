@@ -620,9 +620,9 @@ class LRUCache:
         # 2-3. Build heap of top k frequent elements and
         # convert it into an output array
         # O(N log k) time
-        return heapq.nlargest(k, count.keys(), key=count.get) # TODO understand heapq.nlargest api
+        return heapq.nlargest(k, count.keys(), key=count.get) # TODO understand heapq.nlargest method
 ```
-- Intuition use a min heap(default heap implementation) of size k. Be able to explain what a heap is. A complete binary tree with ordering of parent vs. child nodes of either max or min. I also used the Counter python api to make a dict of values and their associated counts.
+- Intuition use a min heap(default heap implementation) of size k. Be able to explain what a heap is. A complete binary tree with ordering of parent vs. child nodes of either max or min. I also used the Counter python class to make a dict of values and their associated counts.
 - Time Complexity might be a little hard based on the editorial talking about (N-k) for the first loop. It says after the first k inserts the push/pop starts and it starts to affect the time complexity like this (N-k)*logk which makes sense now that I have wrote it out.
 - TODO: understand the quick select algorithm.
 - I really have to be able to ask clarifying questions, explain my solution/make sure the interviewer understands it, code it and test it with my own test cases in 15 minutes!!! Really double down on this.
