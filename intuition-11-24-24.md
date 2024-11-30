@@ -626,3 +626,33 @@ class LRUCache:
 - Time Complexity might be a little hard based on the editorial talking about (N-k) for the first loop. It says after the first k inserts the push/pop starts and it starts to affect the time complexity like this (N-k)*logk which makes sense now that I have wrote it out.
 - TODO: understand the quick select algorithm.
 - I really have to be able to ask clarifying questions, explain my solution/make sure the interviewer understands it, code it and test it with my own test cases in 15 minutes!!! Really double down on this.
+
+- [Problem Merge Two Sorted Lists](https://leetcode.com/problems/merge-two-sorted-lists/)
+```python
+   def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
+        # Constraints: both of these lists are guaranteed to be sorted in increasing order
+        # -100 <= Node.val <= 100
+        if list1==None and list2==None:
+            return None
+        if list1 == None:
+            return list2
+        if list2 == None:
+            return list1
+
+        newHead = ListNode(-1)
+        curr = newHead
+        while list1 and list2:
+            if list1.val <= list2.val:
+                curr.next = list1
+                list1 = list1.next
+            else:
+                curr.next = list2
+                list2 = list2.next
+            curr = curr.next
+        
+        # if any lists are remaining
+        curr.next = list1 if list1 else list2
+        return newHead.next
+    # Time Complexity: O(n+m)
+    # Space Complexity: O(1) since we are splicing the lists together. We are reusing the nodes from the lists we are merging from in a clever way
+```
