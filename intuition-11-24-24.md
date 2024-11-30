@@ -656,3 +656,44 @@ class LRUCache:
     # Time Complexity: O(n+m)
     # Space Complexity: O(1) since we are splicing the lists together. We are reusing the nodes from the lists we are merging from in a clever way
 ```
+- [Problem Merge K Sorted Lists]()
+Solution
+```python
+# [[1,2,3],[3,4]]
+
+# [[1,2,3],[3,4]]
+# ret: [[1 -> 2 -> 3 -> 3 -> 4]
+# head1: [1, 2 ,3 ]
+# head2: [3,4]
+# temphead: -1 -> 1 -> 2 -> 3 -> 3 -> 4
+# i=2
+# return 1->
+   def merge(self,head1,head2):
+            tempHead = ListNode(-1)
+            tempNode = tempHead
+            while head1 and head2:
+                if head1.val <= head2.val:
+                    tempNode.next = head1
+                    head1 = head1.next
+                else:
+                    tempNode.next = head2
+                    head2 = head2.next
+                tempNode = tempNode.next
+            tempNode.next = head1 if head1 else head2
+            return tempHead.next
+
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        if len(lists)==0:
+            return None
+        ret = [lists[0]]
+        i = 1
+        while i<len(lists):
+            head1 = ret.pop()
+            head2 = lists[i]
+            ret.append(self.merge(head1,head2))
+            i+=1
+        return ret[0]
+```
+- Time Complexity O(k*n) k being number of lists and n being number of elements we process each element and list once
+- Space Complexity O(1): Since we are splicing the nodes together from the lists
+- Finding good test cases. odd number of lists vs. even. List1 has all greater elements than list2. Vice versa. Maybe a mix of elements as well. Where 1 list ends up with left overs because the middle of the list has all greater elements than the one its being compared to.
