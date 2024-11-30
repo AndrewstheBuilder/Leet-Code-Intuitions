@@ -709,3 +709,4 @@ Solution
                 left += 1
         return right-left+1
 ```
+- Even though this solution does not have the pointers pointing to the max sub array at the end. It will give back the right length when it finishes. O(n) Time Complexity.
