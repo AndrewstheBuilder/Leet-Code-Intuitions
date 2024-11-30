@@ -697,3 +697,15 @@ Solution
 - Time Complexity O(k*n) k being number of lists and n being number of elements we process each element and list once
 - Space Complexity O(1): Since we are splicing the nodes together from the lists
 - Finding good test cases. odd number of lists vs. even. List1 has all greater elements than list2. Vice versa. Maybe a mix of elements as well. Where 1 list ends up with left overs because the middle of the list has all greater elements than the one its being compared to.
+
+- [Problem Max Consecutive Ones III](https://leetcode.com/problems/max-consecutive-ones-iii/?envType=company&envId=facebook&favoriteSlug=facebook-thirty-days)
+```python
+    def longestOnes(self, nums: List[int], k: int) -> int:
+        left = 0
+        for right in range(len(nums)):
+            k -= 1-nums[right]
+            if k < 0:
+                k += 1 - nums[left]
+                left += 1
+        return right-left+1
+```
