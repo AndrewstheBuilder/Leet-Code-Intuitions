@@ -745,3 +745,4 @@ Solution
 - Time Complexity: O(n)
 - Space Complexity: O(n)
 - I had little bugs in the program. I decided to store node.val as the key so the space taken up would not be too much. I take the most time with test cases. Need to do that a little bit faster.
+- Intuition for this is to find have each node point to its parent as well. So we can back track up the tree to find the appropriate distance from target node in all directions.
