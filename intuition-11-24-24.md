@@ -710,3 +710,38 @@ Solution
         return right-left+1
 ```
 - Even though this solution does not have the pointers pointing to the max sub array at the end. It will give back the right length when it finishes. O(n) Time Complexity.
+
+- [Problem All Nodes Distance K in Binary Tree](https://leetcode.com/problems/all-nodes-distance-k-in-binary-tree/?envType=company&envId=facebook&favoriteSlug=facebook-thirty-days)
+```python
+    def distanceK(self, root: TreeNode, target: TreeNode, k: int) -> List[int]:
+        h_t = defaultdict(list)
+        def setParent(node):
+            if node:
+                if node.left:
+                    h_t[node.val].append(node.left)
+                    h_t[node.left.val].append(node)
+                    setParent(node.left)
+                if node.right:
+                    h_t[node.val].append(node.right)
+                    h_t[node.right.val].append(node)
+                    setParent(node.right)
+            return
+        setParent(root)
+        ans = []
+        visited = set()
+        def dfs(node, distance):
+            if node:
+                if node.val in h_t and node.val not in visited:
+                    visited.add(node.val)
+                    if distance == k:
+                        ans.append(node.val)
+                    children = h_t[node.val]
+                    for c in range(len(children)):
+                        dfs(children[c], distance+1)
+            return 
+        dfs(target, 0)
+        return ans
+```
+- Time Complexity: O(n)
+- Space Complexity: O(n)
+- I had little bugs in the program. I decided to store node.val as the key so the space taken up would not be too much. I take the most time with test cases. Need to do that a little bit faster.
