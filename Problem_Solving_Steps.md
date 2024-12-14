@@ -13,3 +13,8 @@
 7. Verification Process
   a. Spend time looking for improvements: style, maintainability, etc.
   b. Show that you are a great coder who cares about writing quality code.
+
+### For optimizing
+- Look for bottlenecks, unnecessary work, and duplicated work.
+- Optimizing with space and time.
+  - What is the best conceivable runtime?
