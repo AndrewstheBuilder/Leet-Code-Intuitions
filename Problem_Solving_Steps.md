@@ -46,3 +46,5 @@
   - Case by case basis not every problem needs this.
   - Ask your interviewer if there is a lot of boundary checks if we can validate it through helper function.
 - Never write loose code. Make sure it is part of a function
+- The interviewer wants to see good Signal that you are a good coder.
+  - Ignore things that don't show good signal (but check with your interviewer first)
