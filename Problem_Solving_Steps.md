@@ -32,3 +32,12 @@
   - Helper functions
   - Data structures and when they change
 - **Wait until you and your interviewer are ready!**
+  - Walk through the algorithm details, data structures, indices, etc.
+- Demonstrate that you're a great coder:
+  - correctness
+  - readability
+  - maintainability
+  - performance
+- Use the neat features of your programming language!
+  - Ask if you're not sure
+  - Can often "make up" reasonable funcitons (or assume at first and implement later)
