@@ -66,11 +66,11 @@
    - **Do not use your original example to walk through your code.** Because its likely a very large example and it will be time consuming to walk through it.
       - Also better to test your design with an example you did not use to come up with that design
 ### Clean up
-- Make sure you are actually running the lines of code with your example. Not just your assumption of processing it.
-- Make sure as you are executing each line think about what is happening.
+- Make sure you are actually running the lines of code with your example. Not just your assumption of processing it. Or the preconceived notion you had from building out that algorithm.
+- Make sure as you are executing each line think about what is happening. Think about the bigger picture. Do not just process line by line and not connect the dots to the overall larger picture.
 - Do not do quick sloppy fixes. Do not panic when you find a bug. Its normal.
   - Take my time find the right fix.
-- When all is done, go through the code one last time for any improvements.
+- When all is done, go through the code one last time for any improvements. Style fixes, maintainability changes, etc.
 
 ### Communication
 - Use examples to explain your approach
