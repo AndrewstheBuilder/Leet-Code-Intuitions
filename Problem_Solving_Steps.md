@@ -19,4 +19,7 @@
 - Optimizing with space and time.
   - What is the best conceivable runtime?
 - Optimizing with DIY
-  - Forget the computer stuff. Use a large and generic example and try to solve it intuitively 
+  - Forget the computer stuff. Use a large and generic example and try to solve it intuitively
+### Wait until you're ready to code.
+- I understand the basic gist of what I'm going to write is not enough.
+- Some candidates rush into code when they don't fully understand what they're going to do. This causes a lot of mistakes. Make sure you know exactly what the steps are.
