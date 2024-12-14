@@ -41,3 +41,7 @@
 - Use the neat features of your programming language!
   - Ask if you're not sure
   - Can often "make up" reasonable funcitons (or assume at first and implement later)
+- Good style is bad, consistency!
+- Think about error cases, boundary checks, etc...
+  - Case by case basis not every problem needs this.
+  - Ask your interviewer if there is a lot of boundary checks if we can validate it through helper function.
