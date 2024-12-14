@@ -1,7 +1,10 @@
 ### My steps
 1. Listen ... look for clues. Restate what you think the problem is!
-  a. And get the requirements. Listen and look for clues. Interviewers do not try to give you clues that do not apply.
-  b. If your answer does not use the details maybe its suboptimal
+   a. And get the requirements. Listen and look for clues. Interviewers do not try to give you clues that do not apply.
+   b. If your answer does not use the details maybe its suboptimal
+1. Listen ... look for clues. Restate what you think the problem is!
+    a. And get the requirements. Listen and look for clues. Interviewers do not try to give you clues that do not apply.
+    b. If your answer does not use the details maybe its suboptimal
 3. Write out examples.
   a. Look at larger examples?? Because it will make your brain do some work and that can point out the optimal algorithm. If its a simple example you can see the answer right away in the example but not algorithmically. Do not give special cases to the example. For instance if its not sorted do not give a sorted example.
 4. Give the brute force. Slow and obvious. State the Space and Time Complexity of it.
