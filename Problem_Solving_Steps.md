@@ -45,3 +45,4 @@
 - Think about error cases, boundary checks, etc...
   - Case by case basis not every problem needs this.
   - Ask your interviewer if there is a lot of boundary checks if we can validate it through helper function.
+- Never write loose code. Make sure it is part of a function
