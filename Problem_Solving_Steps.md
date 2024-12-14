@@ -8,7 +8,7 @@
 4. Optimize the algorithm
   a. You might spend a good bit of your time optimizing
   b. Some interviewers might ask you to write out the brute force which is okay as well.
-5. Walk through algo. *Disclaimer*: Make sure you know exactly what you're doing before you code. It does not have to be completely correct
+5. Walk through algo. *Disclaimer*: Make sure you know exactly what you're doing before you code. It does not have to be completely correct, but make sure its as correct as possible!
 6. Write code. Expect to shoot for real correct code.
 7. Verification Process
   a. Spend time looking for improvements: style, maintainability, etc.
