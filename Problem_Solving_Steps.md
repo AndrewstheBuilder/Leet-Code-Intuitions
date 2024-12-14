@@ -48,3 +48,4 @@
 - Never write loose code. Make sure it is part of a function
 - The interviewer wants to see good Signal that you are a good coder.
   - Ignore things that don't show good signal (but check with your interviewer first)
+    - Get the biggest element in the array etc.
