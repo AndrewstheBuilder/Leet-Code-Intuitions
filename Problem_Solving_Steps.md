@@ -31,3 +31,4 @@
   - Index math
   - Helper functions
   - Data structures and when they change
+- *Wait until you and your interviewer are ready!*
