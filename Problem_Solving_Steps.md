@@ -18,3 +18,5 @@
 - Look for bottlenecks, unnecessary work, and duplicated work.
 - Optimizing with space and time.
   - What is the best conceivable runtime?
+- Optimizing with DIY
+  - Forget the computer stuff. Use a large and generic example and try to solve it intuitively 
