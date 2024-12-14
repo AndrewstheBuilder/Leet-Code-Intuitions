@@ -1,5 +1,5 @@
 ### My steps
-1. Listen ... look for clues
+1. Listen ... look for clues. Restate what you think the problem is!
   a. And get the requirements. Listen and look for clues. Interviewers do not try to give you clues that do not apply.
   b. If your answer does not use the details maybe its suboptimal
 2. Write out examples.
