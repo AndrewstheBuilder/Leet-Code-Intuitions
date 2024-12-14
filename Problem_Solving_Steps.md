@@ -1,21 +1,18 @@
 ### My steps
 1. Listen ... look for clues. Restate what you think the problem is!
-   a. And get the requirements. Listen and look for clues. Interviewers do not try to give you clues that do not apply.
-   b. If your answer does not use the details maybe its suboptimal
-1. Listen ... look for clues. Restate what you think the problem is!
-    a. And get the requirements. Listen and look for clues. Interviewers do not try to give you clues that do not apply.
-    b. If your answer does not use the details maybe its suboptimal
+   - And get the requirements. Listen and look for clues. Interviewers do not try to give you clues that do not apply.
+   - If your answer does not use the details maybe its suboptimal
 3. Write out examples.
-  a. Look at larger examples?? Because it will make your brain do some work and that can point out the optimal algorithm. If its a simple example you can see the answer right away in the example but not algorithmically. Do not give special cases to the example. For instance if its not sorted do not give a sorted example.
+   - Look at larger examples?? Because it will make your brain do some work and that can point out the optimal algorithm. If its a simple example you can see the answer right away in the example but not algorithmically. Do not give special cases to the example. For instance if its not sorted do not give a sorted example.
 4. Give the brute force. Slow and obvious. State the Space and Time Complexity of it.
 5. Optimize the algorithm
-  a. You might spend a good bit of your time optimizing
-  b. Some interviewers might ask you to write out the brute force which is okay as well.
+   - You might spend a good bit of your time optimizing
+   - Some interviewers might ask you to write out the brute force which is okay as well.
 6. Walk through algo. *Disclaimer*: Make sure you know exactly what you're doing before you code. It does not have to be completely correct, but make sure its as correct as possible!
 7. Write code. Expect to shoot for real correct code.
 8. Verification Process
-  a. Spend time looking for improvements: style, maintainability, etc.
-  b. Show that you are a great coder who cares about writing quality code.
+   - Spend time looking for improvements: style, maintainability, etc.
+   - Show that you are a great coder who cares about writing quality code.
 
 ### For optimizing
 - Look for bottlenecks, unnecessary work, and duplicated work.
@@ -58,16 +55,16 @@
   - Also better to test your design with an example you did not use to come up with that design
 1. Walk through a conceptual walkthrough. **FAST!**
 2. Hot spots. Where are the high risk lines of code? **FAST!**
-   a. Math
-   b. Moving indicies
-   c. Parameters when calling recursion
-   d. Base cases and so on!
+   - Math
+   - Moving indicies
+   - Parameters when calling recursion
+   - Base cases and so on!
 3. Test cases
-  a. Small Test Cases **MEDIUM!**
-  b. Verify some of edge cases.  **MEDIUM!**
+   - Small Test Cases **MEDIUM!**
+   - Verify some of edge cases.  **MEDIUM!**
     - Boring Edge Cases: Nulls, emptys, single element
     - Interesting Edge Cases: All punctuation, Sorted Strings, all Duplicates.
-  c. Big test cases (if you have time) **SLOW!**
+ -  Big test cases (if you have time) **SLOW!**
 ### Clean up
 - Make sure you are actually running the lines of code with your example. Not just your assumption of processing it.
 - Make sure as you are executing each line think about what is happening.
