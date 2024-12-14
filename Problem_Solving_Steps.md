@@ -73,4 +73,7 @@
 - When all is done, go through the code one last time for any improvements.
 
 ### Communication
+- Use examples to explain your approach
+- Be open about your mistakes.
+- Admit if you've heard the question before?
 - Interviewer might be giving hints and trying to lead you to an answer. Keep following their lead after they have given the hints.
