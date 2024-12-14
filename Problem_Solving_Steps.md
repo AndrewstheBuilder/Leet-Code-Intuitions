@@ -71,3 +71,6 @@
 - Do not do quick sloppy fixes. Do not panic when you find a bug. Its normal.
   - Take my time find the right fix.
 - When all is done, go through the code one last time for any improvements.
+
+### Communication
+- Interviewer might be giving hints and trying to lead you to an answer. Keep following their lead after they have given the hints.
