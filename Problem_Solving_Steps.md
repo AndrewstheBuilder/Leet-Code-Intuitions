@@ -65,3 +65,9 @@
     - Boring Edge Cases: Nulls, emptys, single element
     - Interesting Edge Cases: All punctuation, Sorted Strings, all Duplicates.
   c. Big test cases (if you have time) **SLOW!**
+### Clean up
+- Make sure you are actually running the lines of code with your example. Not just your assumption of processing it.
+- Make sure as you are executing each line think about what is happening.
+- Do not do quick sloppy fixes. Do not panic when you find a bug. Its normal.
+  - Take my time find the right fix.
+- When all is done, go through the code one last time for any improvements.
