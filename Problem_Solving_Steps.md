@@ -51,8 +51,6 @@
   - Ignore things that don't show good signal (but check with your interviewer first)
     - Get the biggest element in the array etc.
 ### Verification
-- Do not use your original example to walk through your code. Because its likely a very large example and it will be time consuming to walk through it.
-  - Also better to test your design with an example you did not use to come up with that design
 1. Walk through a conceptual walkthrough. **FAST!**
 2. Hot spots. Where are the high risk lines of code? **FAST!**
    - Math
@@ -64,7 +62,9 @@
    - Verify some of edge cases.  **MEDIUM!**
     - Boring Edge Cases: Nulls, emptys, single element
     - Interesting Edge Cases: All punctuation, Sorted Strings, all Duplicates.
- -  Big test cases (if you have time) **SLOW!**
+   - Big test cases (if you have time) **SLOW!**
+   - **Do not use your original example to walk through your code.** Because its likely a very large example and it will be time consuming to walk through it.
+      - Also better to test your design with an example you did not use to come up with that design
 ### Clean up
 - Make sure you are actually running the lines of code with your example. Not just your assumption of processing it.
 - Make sure as you are executing each line think about what is happening.
