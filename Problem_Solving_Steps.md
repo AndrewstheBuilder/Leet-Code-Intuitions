@@ -3,7 +3,7 @@
    - And get the requirements. Listen and look for clues. Interviewers do not try to give you clues that do not apply.
    - If your answer does not use the details maybe its suboptimal
 3. Write out examples.
-   - Look at larger examples?? Because it will make your brain do some work and that can point out the optimal algorithm. If its a simple example you can see the answer right away in the example but not algorithmically. Do not give special cases to the example. For instance if its not sorted do not give a sorted example.
+   - Look at larger examples?? Because it will make your brain do some work and that can point out the optimal algorithm. If its a simple example you can see the answer right away in the example but not algorithmically. Do not give special cases to the example. For instance if the problem does not call for a sorted input do not give a sorted input example.
 4. Give the brute force. Slow and obvious. State the Space and Time Complexity of it.
 5. Optimize the algorithm
    - You might spend a good bit of your time optimizing
