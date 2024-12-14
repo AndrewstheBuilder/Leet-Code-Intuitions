@@ -4,7 +4,7 @@
   b. If your answer does not use the details maybe its suboptimal
 2. Write out examples.
   a. Look at larger examples?? Because it will make your brain do some work and that can point out the optimal algorithm. If its a simple example you can see the answer right away. Do not give special cases to the example. If its not sorted do not give a sorted example.
-3. Give the brute force. Slow and obvious. Space and Time Complexity of it.
+3. Give the brute force. Slow and obvious. State the Space and Time Complexity of it.
 4. Optimize the algorithm
   a. You might spend a good bit of your time optimizing
   b. Some interviewers might ask you to write out the brute force which is okay as well.
