@@ -2,15 +2,15 @@
 1. Listen ... look for clues. Restate what you think the problem is!
   a. And get the requirements. Listen and look for clues. Interviewers do not try to give you clues that do not apply.
   b. If your answer does not use the details maybe its suboptimal
-2. Write out examples.
+3. Write out examples.
   a. Look at larger examples?? Because it will make your brain do some work and that can point out the optimal algorithm. If its a simple example you can see the answer right away in the example but not algorithmically. Do not give special cases to the example. For instance if its not sorted do not give a sorted example.
-3. Give the brute force. Slow and obvious. State the Space and Time Complexity of it.
-4. Optimize the algorithm
+4. Give the brute force. Slow and obvious. State the Space and Time Complexity of it.
+5. Optimize the algorithm
   a. You might spend a good bit of your time optimizing
   b. Some interviewers might ask you to write out the brute force which is okay as well.
-5. Walk through algo. *Disclaimer*: Make sure you know exactly what you're doing before you code. It does not have to be completely correct, but make sure its as correct as possible!
-6. Write code. Expect to shoot for real correct code.
-7. Verification Process
+6. Walk through algo. *Disclaimer*: Make sure you know exactly what you're doing before you code. It does not have to be completely correct, but make sure its as correct as possible!
+7. Write code. Expect to shoot for real correct code.
+8. Verification Process
   a. Spend time looking for improvements: style, maintainability, etc.
   b. Show that you are a great coder who cares about writing quality code.
 
