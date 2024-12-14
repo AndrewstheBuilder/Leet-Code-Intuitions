@@ -33,6 +33,7 @@
   - Data structures and when they change
 - **Wait until you and your interviewer are ready!**
   - Walk through the algorithm details, data structures, indices, etc.
+### Coding
 - Demonstrate that you're a great coder:
   - correctness
   - readability
@@ -40,7 +41,7 @@
   - performance
 - Use the neat features of your programming language!
   - Ask if you're not sure
-  - Can often "make up" reasonable funcitons (or assume at first and implement later)
+  - Can often "make up" reasonable functions (or assume at first and implement later)
 - Good style is bad, consistency!
 - Think about error cases, boundary checks, etc...
   - Case by case basis not every problem needs this.
@@ -49,3 +50,18 @@
 - The interviewer wants to see good Signal that you are a good coder.
   - Ignore things that don't show good signal (but check with your interviewer first)
     - Get the biggest element in the array etc.
+### Verification
+- Do not use your original example to walk through your code. Because its likely a very large example and it will be time consuming to walk through it.
+  - Also better to test your design with an example you did not use to come up with that design
+1. Walk through a conceptual walkthrough. **FAST!**
+2. Hot spots. Where are the high risk lines of code? **FAST!**
+   a. Math
+   b. Moving indicies
+   c. Parameters when calling recursion
+   d. Base cases and so on!
+3. Test cases
+  a. Small Test Cases **MEDIUM!**
+  b. Verify some of edge cases.  **MEDIUM!**
+    - Boring Edge Cases: Nulls, emptys, single element
+    - Interesting Edge Cases: All punctuation, Sorted Strings, all Duplicates.
+  c. Big test cases (if you have time) **SLOW!**
