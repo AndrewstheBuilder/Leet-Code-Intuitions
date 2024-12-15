@@ -2,6 +2,8 @@
 1. Listen ... look for clues. Restate what you think the problem is!
    - And get the requirements. Listen and look for clues. Interviewers do not try to give you clues that do not apply.
    - If your answer does not use the details maybe its suboptimal
+   - Obviously get the constraints this will inform the design too!
+   - Get the edge cases here too
 3. Write out examples.
    - Look at larger examples?? Because it will make your brain do some work and that can point out the optimal algorithm. If its a simple example you can see the answer right away in the example but not algorithmically. Do not give special cases to the example. For instance if the problem does not call for a sorted input do not give a sorted input example.
 4. Give the brute force. Slow and obvious. State the Space and Time Complexity of it.
