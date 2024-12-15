@@ -27,7 +27,7 @@
 - Some candidates rush into code when they don't fully understand what they're going to do. This causes a lot of mistakes. Make sure you know exactly what the steps are.
 - Interviewer might be like I see the basic idea, can i see the code, but do not start until you are ready!
 - Wait until your interviewer is ready as well!
-- *Never code until your interviewer says lets see the code"
+- **Never code until your interviewer says "lets see the code"**
 - You should know things like:
   - Your input/output data types
   - Index math
