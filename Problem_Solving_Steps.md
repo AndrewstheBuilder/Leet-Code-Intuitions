@@ -79,3 +79,8 @@
 - Be open about your mistakes.
 - Admit if you've heard the question before?
 - Interviewer might be giving hints and trying to lead you to an answer. Keep following their lead after they have given the hints.
+
+### Do not give up
+- The questions are going to be hard. They are looking for the process you use to get to the solution and not that you get the right answer.
+- Its expected that you might not be able to solve the problem.
+- If it feels like you are struggling during the interview you are probably doing better than you think you are. Studies have shown we underestimate how well we are doing when we hit challenging points.
