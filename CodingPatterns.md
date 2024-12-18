@@ -11,7 +11,8 @@
     - bound search is when we keep the mid after having found the target and keep it pusshing
     - We have lower and upper bound search
     - The mid calculation is normally bias to the left because of the floor //2 operation.
-```python
+
+```
 # Lower Bound
 def lower_bound_binary_search(nums:List[int], target:int) -> int:
   left,right=0, len(nums)-1
@@ -25,6 +26,7 @@ def lower_bound_binary_search(nums:List[int], target:int) -> int:
       right=mid
 return left if nums and nums[left]==target else -1
 ```
+
 ```python
 def upper_bound_binary_search(nums: List[int], target:int) -> int:
   left,right=0,len(nums)-1
@@ -42,7 +44,9 @@ def upper_bound_binary_search(nums: List[int], target:int) -> int:
   # 'mid == n-1'. So, we use the right pointer in the return
   # statement instead.
   return right if nums and nums[right] == target else -1
-```
+  ```
 - In [intuition-12-15-24](obsidian://open?vault=Leet-Code-Intuitions&file=12-15-24) there is a way to solve the sorted but rotated array that I think is a very clever use of binary search.
 3. Stacks
 	- reversing order, handling nested elements like parenthesis, monotonic stacks -> special order stacks maintain elements in a consistent, increasing or decreasing sorted order. Before adding a new element to the stack, any elements that break this order are removed from the top of the stack, ensuring the stack remains sorted.
+4. Graphs
+	- BFS should be used for shortest path problems. Because BFS does a level by level order traversal in unweighted graphs and each edge in a unweighted graph has an equal cost of 1. This systematic exploration ensures that when we reach the destination node for the first time, we have done so using the shortest possible path.

@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CodingPatterns.md",
+                "file": "12-15-24.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "CodingPatterns"
+              "title": "12-15-24"
             }
           }
         ]
@@ -93,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "CodingPatterns.md",
+                "file": "12-15-24.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +103,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for CodingPatterns"
+              "title": "Backlinks for 12-15-24"
             }
           },
           {
@@ -112,12 +112,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "CodingPatterns.md",
+                "file": "12-15-24.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from CodingPatterns"
+              "title": "Outgoing links from 12-15-24"
             }
           },
           {
@@ -139,10 +139,10 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "CodingPatterns.md"
+                "file": "12-15-24.md"
               },
               "icon": "lucide-list",
-              "title": "Outline of CodingPatterns"
+              "title": "Outline of 12-15-24"
             }
           }
         ]
@@ -165,8 +165,9 @@
   "active": "729971e6c51e66d3",
   "lastOpenFiles": [
     "LeetCodeIntuitions.md",
+    "CodingPatterns.md",
     "12-15-24.md",
-    "intuition-11-24-24.md",
-    "CodingPatterns.md"
+    "Problem_Solving_Steps.md",
+    "intuition-11-24-24.md"
   ]
 }
