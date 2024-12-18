@@ -43,3 +43,6 @@ def upper_bound_binary_search(nums: List[int], target:int) -> int:
   # statement instead.
   return right if nums and nums[right] == target else -1
 ```
+- In [intuition-12-15-24](obsidian://open?vault=Leet-Code-Intuitions&file=12-15-24) there is a way to solve the sorted but rotated array that I think is a very clever use of binary search.
+3. Stacks
+	- reversing order, handling nested elements like parenthesis, monotonic stacks -> special order stacks maintain elements in a consistent, increasing or decreasing sorted order. Before adding a new element to the stack, any elements that break this order are removed from the top of the stack, ensuring the stack remains sorted.
