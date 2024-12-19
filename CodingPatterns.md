@@ -50,3 +50,6 @@ def upper_bound_binary_search(nums: List[int], target:int) -> int:
 	- reversing order, handling nested elements like parenthesis, monotonic stacks -> special order stacks maintain elements in a consistent, increasing or decreasing sorted order. Before adding a new element to the stack, any elements that break this order are removed from the top of the stack, ensuring the stack remains sorted.
 4. Graphs
 	- BFS should be used for shortest path problems. Because BFS does a level by level order traversal in unweighted graphs and each edge in a unweighted graph has an equal cost of 1. This systematic exploration ensures that when we reach the destination node for the first time, we have done so using the shortest possible path.
+5. Trees
+	- Height of a complete binary tree is log(n) with n being the number of elements
+	- Trees that are not complete we will have to call the height a separate variable h.
