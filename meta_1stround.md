@@ -142,3 +142,4 @@ class Solution:
             output.append(interm_dict[key])
         return output
 ```
+- With the time constraints. I struggled to find the optimal solution and I kept trying to jog my memory for it. I should have been more careful about the problem solving process. So I made meaningful mistakes or maybe even happened upon the optimal solution. Instead I may have used fast intuitions to guess and check. I guess its okay. I just need more practice.
