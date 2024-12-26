@@ -20,8 +20,23 @@
               "icon": "lucide-file",
               "title": "Heaps"
             }
+          },
+          {
+            "id": "6c5125a2b6700f71",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Intervals.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Intervals"
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -162,11 +177,12 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "1cdf6132e580b3ef",
+  "active": "6c5125a2b6700f71",
   "lastOpenFiles": [
+    "Heaps.md",
+    "Intervals.md",
     "meta_1stround.md",
     "Problem_Solving_Steps.md",
-    "Heaps.md",
     "12-15-24.md",
     "CodingPatterns.md",
     "LeetCodeIntuitions.md",
