@@ -173,3 +173,154 @@ def combineLinkedLists(nodeL: List[Node]) -> Node:
             heapq.heappush(heap, smallest_node.next)
     return dummy.next
 ```
+3. Median of an Integer Stream
+```python
+# Median of an Integer Stream
+# Design a data structure that supports adding integers from a data stream and retrieving the median of all elements received at any point.
+# add(num: int) -> None: adds an integer to the data structure
+# get_median() -> float: returns the median of all integers so far
+# have to run through some examples to get the intuition for this:
+    # add(3) -> add(6) -> get_median() [3,6]:(3+6)/2 = returns 4.5 -> add(1) [1,3,5] -> get_median() returns 3
+    # [1,3,6]
+
+# when we add we have to keep the numbers in order in the data structure we add to
+# when the number of elements is odd we have a single median. When number of elements is even we have two elements in median.
+    # we have to solve this problem of finding the median with odd and even numbers
+    
+# 1. we could add the numbers to a list. Find the appropriate spot to put the number by doing binary search. And insert the new element
+    # 2. we can calculate the median by getting the half way point of the list
+        # if its even we do the (mid+(mid+1))/2
+        # if its odd return mid
+# 1. time O(log(n)) and 2. time: O(1)
+# Overall space is O(n)
+# overall time is O(n^2*log(n))
+
+# Limitations of time and space: what is the range of n?
+    # we have to store n elements so has to be at least O(n) space
+    # keeping elements in order has to be at least log(n) time
+        # instead of binary search we can use a min heap to keep elements in relative order when doing add.
+        # now what about finding the median when using heap?
+            #IDK
+         
+# binary search: we calculate mid we have left, right pointer
+def binarySearch(element):
+    left=0
+    right = len(arr)-1
+    mid = (right+left)//2
+    # two edge cases when element should be inserted at end or beginning
+    while left<=right:
+        if element>mid:
+            left += 1
+        elif element<mid:
+            right-=1
+        else:
+            # element==mid
+            # insert element into mid position and shift other elements to the right 1
+            # results in O(n) time
+    # left==right mid will be left biased so right might fall below left but left will end up at the right spot.
+    # insert at left and move elements at left and to the end one step to the right.
+
+# calculate median
+def getMedian():
+    if not arr:
+        return None
+    n = len(arr)
+    even = n%2==0
+    mid = n//2 # mid is biased to left
+    if len(arr)==1:
+        return arr[0]
+# Constraints: at least one value will be added before get_median is called
+
+# Example:
+# add(3) -> add(6) -> get_median() [3,6]:(3+6)/2 = returns 4.5 -> add(1) [1,3,6] -> get_median() returns 3
+# [1,3,6]
+
+# add(3):[3] -> add(6):[3,6]
+# add(6):[3,6]
+    # left=0
+    # right=0
+    # mid=0
+    # left+=1 => 1
+    # insert at 1
+# TODO: see what happens if number first inserted is greater than second number
+# get_median():[3,6]
+    # even is true
+    # mid=2//2=1
+    # is length of 2 a special case???
+    # (mid+(mid-1))//2 => (3+6)//2=4.5
+    # return 4.5
+# add(1): [1,3,6]
+    # left=0
+    # right=1 -> right-1=0 -> right-1=-1
+    # mid=1//2=0 -> mid=0
+    # insert at 0
+    # [1,3,6]
+# get_median():
+    # even is false
+    # mid=(3//2)==1
+    # return mid
+
+# instead of binary search for inserting into a list data structure.
+# we can maintain two heaps. 1. for left half max heap
+# 2. for right half min heap.
+# the roots of both max and min heap will contain the median if length is even
+# the max heap root will contain the median if the length is odd
+
+# in this implementation there is no guarantee that I am inserting to the right heap
+# example add(3), add(1), add(5), add(0)
+# left_half:[3,5]
+# right_half:[0,1]
+# get_median() => (3+0)/2=1.5 * my implementation
+    # [0,1,3,5] => (1+3)/2=2.0 * true answer
+class IntegerStream:
+    def __init__(self):
+        self.left_half = [] #left half
+        self.right_half = [] # right half
+        self.len = 0
+        
+    def add(i):
+        if self.len%2==0:
+            # length is even
+            heapq.heappush(self.left_half, -i)
+        else:
+            # length is odd
+            heapq.heappush(self.right_half, i)
+            
+    def get_median():
+        if self.len%2==0:
+            # length is even
+            leftMed = -1 * heapq.peek(left_half)
+            rightMed = heapq.peek(right_half)
+            return (leftMed+rightMed)/2
+        else:
+            # length is odd
+            leftMed =  -1 * heapq.peek(left_half)
+            return leftMed
+
+# Actual solution
+class IntegerStream:
+    def __init__(self):
+        self.left_half = [] # max heap
+        self.right_half = [] # min heap
+        
+    def add(self, i:int):
+        if not self.left_half or i<-self.left_half[0]:
+            # i belongs to left half
+            heapq.heappush(self.left_half, -i)
+            # left half can be 1 more than right half
+            if len(self.left_half) > len(self.right_half)+1:
+                # rebalance left and right half
+                heapq.heappush(self.right_half, -heapq.heappop(self.left_half))
+        else:
+            heapq.heappush(self.right_half, i)
+            if len(self.right_half)>len(self.left_half):
+                # rebalance left and right half
+                heapq.heappush(self.left_half, -heapq.heappop(self.right_half))
+            
+    def get_median(self):
+        if len(self.left_half)==len(self.right_half):
+            # number of elements is even median is in both halves root
+            return (-self.left_half[0] + self.right_half[0])/2.0
+        # number of elements is odd median is in left_half
+        return -self.left_half[0]
+```
