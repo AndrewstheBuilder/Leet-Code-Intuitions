@@ -104,3 +104,72 @@ def k_most_frequent_strings_min_heap(strs: List[str], k:int) -> List[str]:
     res.reverse() # since its min heap
     return res
 ```
+
+2. Combine K Sorted Linked Lists
+```python
+# Combine Sorted Lists
+# Given k singly linked lists, each sorted in ascending order, combine them into one sorted linked list.
+
+# Example
+# 1->6
+# 1->4->6
+# 3->7
+# 1->1->3->4->6->6->7
+
+# time complexity has to be at least O(k*n)
+# put each Node into a min heap
+# pop from the min heap until heap is empty
+# we are saying n is the number of elements in each list
+# overall time: O(k*n*log(k*n))
+# overall space: O(k*n)
+
+# Space Optimal
+# Space Complexity: O(k)
+# overall time: O(k*n*log(k))
+# with two linked lists we could have a pointer at each list and do comparisons before inserting to new list.
+    # is there a way to generalize this to k lists?
+    # use the heap approach
+    # but only add the heads of the k linked list. Then when one node gets popped off add the next node in the same linked list to the heap.
+    # continue this until all the linked lists are exhausted
+
+# say n is the total number of elements
+# space optimal approach
+# Space Complexity: O(k) for heap
+# Overall Time: O(n*log(k))
+    # for each node we perform a push and pop into the heap which can be at most k elements
+
+# 1*->6*
+# 1*->4*->6*
+# 3*->7*
+# 1->1*->3*->4*->6*->6*->7*
+
+# dummy -> None
+# dummy=node -> node=1 -> node=1 -> node=1 -> node=1 -> node=3 -> node=3 -> node=4 -> node=4 
+# node=6 -> node=6 -> node=6 ->  node=7 -> node=7 -> None
+# heap: []
+# return dummy.next
+class Node:
+    def __init__(self, val=None, next=None):
+        self.val = val
+        self.next - next
+        
+def combineLinkedLists(nodeL: List[Node]) -> Node:
+    dummy = Node()
+    node = dummy
+    if not nodeL:
+        return head
+    heap = []
+    # populate heads of all k lists into heap
+    for head in nodeL:
+        # make sure head exists
+        if head:
+    `       heapq.heappush(heap, head)
+    # go until heap is empty
+    while heap:
+        smallest_node = heapq.heappop(heap)
+        node.next = smallest_node
+        node = node.next
+        if smallest_node.next:
+            heapq.heappush(heap, smallest_node.next)
+    return dummy.next
+```
