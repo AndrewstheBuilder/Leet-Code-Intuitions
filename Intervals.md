@@ -74,6 +74,8 @@ def identify_overlap_intervals(intervals1: List[List[int]], intervals2: List[Lis
     return overlaps
 
 # Chat GPT Implementation which I verified works by looking at drawing
+# More efficient comparison of overlap
+# the pointer movement is more efficient by moving both pointers forward if the intervals end at the same time.
 from typing import List
 
 def identify_overlap_intervals(intervals1: List[List[int]], intervals2: List[List[int]]) -> List[List[int]]:
