@@ -31,7 +31,7 @@ class Solution:
     # "rabb" -> 2
     def numDistinct(self, s: str, t: str) -> int:
 ```
-- Top Down DP Solution
+- Recursive DP Solution
 ``` python
 class Solution:
     def numDistinct(self, s: str, t: str) -> int:
