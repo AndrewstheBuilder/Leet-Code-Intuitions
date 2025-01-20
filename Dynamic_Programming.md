@@ -65,4 +65,32 @@ class Solution:
 
         return uniqueSubsequences(0, 0)
 ```
+- My recursive DP Solution:
+```python
+class Solution:
+    # s="tom", t="to"
+    # M=3, N=2
+    # i=0, j=0 return recurse(0,0)==1 -> return ans=1 (1,0) return 0 + (1,1) return 1 -> (2,0) return ans=0 -> (3,0) return ans=0 -> return 0
+    # -> (1,1) -> (2,1) return ans=0 + (2,2) return 1 -> return 1
+    # -> (2,1) return ans=0 -> (3,1) -> return 0
+    def numDistinct(self, s: str, t: str) -> int:
+        M = len(s)
+        N = len(t)
+        def recurse(i,j):
+            if(i==M or j==N):
+                # if we are at the end of t we found a subsequence
+                return 1 if(j==N) else 0
+            ans = 0
+            if(s[i] == t[j]):
+                # if a character matches you can skip it in s
+                # or you can move pointers for s and t forward
+                ans += recurse(i+1, j) + recurse(i+1, j+1)
+            else:
+                # characters do not match
+                # skip that character in s
+                ans += recurse(i+1, j)
+            return ans
+        return recurse(0,0)
+```
+- TODO: make the iterative solution from the recursive calls.
         
