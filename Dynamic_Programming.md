@@ -92,5 +92,5 @@ class Solution:
             return ans
         return recurse(0,0)
 ```
-- TODO: make the iterative solution from the recursive calls.
+- TODO: make the iterative solution for this problem from the recursive calls and their results used above. We will mimic the recursive calls by using a 2D matrix.
         
