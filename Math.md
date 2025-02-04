@@ -29,3 +29,40 @@ class Solution:
             nums[i] = nums[i] // n
         return nums
 ```
+2. Binary Exponentiation - A Faster way to exponentiate. O(n) is the brute force. O(logn) is the time optimal solution. Its a clever solution that waits to update the output when n is odd. This is not something I could think up. I tried various configurations based on the ideas I knew and was lost lol. The idea of binary exponentiation itself is not very intuitive and its very clever.
+```python
+class Solution:
+    # init: n=5
+    # x = 5, n=1
+    # expected: 3125
+    # output=1*1*5*5*5*5*5
+    def myPow(self, x: float, n: int) -> float:
+        # solve it iteratively
+        # binary exponentiation
+            # x^4 = (x*x)^2
+            # x^5 = x*(x*x)^2
+        # x^1
+        # return x
+
+        # x^2
+        # x*x, 2//=2 => 1, 1*x*x, 1-=1 return x*x
+
+        # x^3
+        # output = 1*x*x*x, n=0, x=x*x*(x*x)
+        # return output
+
+        if n==0:
+            return 1
+        # preprocessing for negative exponents
+        if n<0:
+            x = 1/x
+            n = n*-1
+        output = 1
+        while n != 0:
+            if n%2==1:
+                output *= x
+                n=(n-1)
+            x *= x
+            n //= 2
+        return output
+```

@@ -55,12 +55,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Two Pointer - Sliding Window.md",
+                "file": "Math.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Two Pointer - Sliding Window"
+              "title": "Math"
             }
           }
         ],
@@ -207,8 +207,8 @@
   },
   "active": "7be58e3c82cd2653",
   "lastOpenFiles": [
-    "Math.md",
     "Two Pointer - Sliding Window.md",
+    "Math.md",
     "Graph.md",
     "Dynamic_Programming.md",
     "CodingPatterns.md",
