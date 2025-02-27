@@ -69,16 +69,30 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Combinations.md",
+                "file": "Math.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Combinations"
+              "title": "Math"
+            }
+          },
+          {
+            "id": "3ebe3a2c08cbf961",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Prefix.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Prefix"
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 5
       }
     ],
     "direction": "vertical"
@@ -220,9 +234,10 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "ade13316502f3a50",
+  "active": "3ebe3a2c08cbf961",
   "lastOpenFiles": [
     "Math.md",
+    "Prefix.md",
     "Combinations.md",
     "Untitled",
     "Two Pointer - Sliding Window.md",
