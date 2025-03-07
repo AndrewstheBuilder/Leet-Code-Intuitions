@@ -176,3 +176,122 @@ class Solution:
                     return False # not possible
         return True
 ```
+
+3. Using DFS to get order of courses to take and making sure there are no cycles
+```python
+'''
+The plan + some methods I tried. I ended up needing hints and realized it needs to be topological sort.
+'''
+class Solution:
+    def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
+        # 0 -> 1,2
+        # 1 -> 2
+        # 2 -> 4
+        # 0 -> 1 -> 2 -> 3
+        # [[1,0],[2,0],[3,1],[3,2], [0,3]]
+        # [[1,0],[2,0],[3,0],[2,3]]
+        # 0 -> 1 -> 2 -> 3
+
+        # [[1,0],[2,0],[3,1],[3,2]]
+        # {0:0,1:1,2:1,3:2}
+        # [[1,0],[2,0],[3,1],[2,1],[3,2]]
+        # {0:0,1:1,2:2,3:3}
+
+        # [[2,0], [1,0], [5,0], [2,1],[3,2],[5,1],[6,1]]
+        # 0 -> 2,1,5
+        # 1 -> 2
+        # 2 -> 3
+        # 5 -> 1
+        # 6 -> 1
+        # visited = [] # we want it to be in order
+        # [0,2,3]
+        # [1,2,3]
+        # [5,1,2]
+        # [6,1]
+
+        # topological sort using dfs
+        # global variable numCourse
+        # explore all nodes in the graph through a for loop
+            # calls dfs on each node
+                # when we reach the end of the graph we will assign that the numCourse and decrement numCourse
+                # adding each node to visited when we visited
+                # recursive_stack to make sure we do not encounter a cycle
+        # [[2,0],[1,0],[4,0],[2,1],[3,2],[4,1],[5,1]]
+        # create the graph
+        # 0 -> 2, 1, 4 *
+        # 1 -> 2, 4, 5
+        # 2 -> 3 *
+        # numCourse = -1 # 0-indexed number of courses global variable
+        # output: [0,1,5,4,2,3] -> list that in init with length of numOfCourses
+        # visited = [2,3,0,1,4,5] -> hashset
+        # recursive_stack = [] -> hashset
+        # for each node in graph
+            # dfs(node)
+        if(numCourses == 1 and len(prerequisities)==0):
+            return [0]
+        # create the graph
+        graph = {}
+        for req in prerequisities:
+            if(req[1] not in graph):
+                graph[req[1]] = []
+            graph[req[1]].append(req[0])
+        
+        # do dfs where we check for cycles and create the output
+        output = []
+```
+```python
+'''
+Implemented solution using Topological Sort w/ DFS
+'''
+class Solution:
+    def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
+        output = []
+        if(len(prerequisites)==0):
+            for i in range(numCourses):
+                output.append(i)
+            return output
+        # create the graph
+        graph = {}
+        for req in prerequisites:
+            if(req[1] not in graph):
+                graph[req[1]] = []
+            graph[req[1]].append(req[0])
+        
+        # do dfs where we check for cycles and create the output
+        output = [-1]*numCourses
+        courses_remaining = set()
+        for i in range(numCourses):
+            courses_remaining.add(i)
+        visited = set()
+        recursive_stack = set()
+        num = numCourses - 1
+
+        def dfs(node):
+            nonlocal num
+            if node in recursive_stack:
+                return False # invalid encounter
+            if node in visited:
+                return True # valid encounter node has been visited
+            visited.add(node)
+            recursive_stack.add(node)
+            for child in graph.get(node, []):
+                if not dfs(child):
+                    return False # invalid encounter pass it up the recursive stack  
+            output[num] = node
+            courses_remaining.remove(node)
+            num -=1
+            recursive_stack.remove(node)
+            return True # valid encounter
+            
+        for node in graph.keys():
+            if node not in visited:
+                if not dfs(node):
+                    return []
+        if courses_remaining:
+            for i in range(len(output)):
+                if output[i] == -1:
+                    output[i] = (courses_remaining.pop())
+        return output
+
+# Time/Space: O(N+E) N being number of nodes, E being number of Edges
+```
