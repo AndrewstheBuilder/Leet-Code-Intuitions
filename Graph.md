@@ -294,4 +294,6 @@ class Solution:
         return output
 
 # Time/Space: O(N+E) N being number of nodes, E being number of Edges
+# Time: We have to visit each node and its edges. We visit each node and its associated edges. Its not for each node we visit all the edges the nodes and edges are both a part of each other.
+# Space: the adjacency list (graph) dominates with O(N+E) it has the nodes and the edge info.
 ```
