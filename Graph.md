@@ -177,7 +177,7 @@ class Solution:
         return True
 ```
 
-3. Using DFS to get order of courses to take and making sure there are no cycles
+3. 207: Course Schedule - Using DFS to get order of courses to take and making sure there are no cycles
 ```python
 '''
 The plan + some methods I tried. I ended up needing hints and realized it needs to be topological sort.
@@ -297,3 +297,165 @@ class Solution:
 # Time: We have to visit each node and its edges. We visit each node and its associated edges. Its not for each node we visit all the edges the nodes and edges are both a part of each other.
 # Space: the adjacency list (graph) dominates with O(N+E) it has the nodes and the edge info.
 ```
+4. Graph Valid Tree
+```python 
+class Solution:
+'''
+incorrect implementation
+You have a graph of n nodes labeled from 0 to n - 1. You are given an integer n and a list of edges where edges[i] = [ai, bi] indicates that there is an undirected edge between nodes ai and bi in the graph.
+
+Return true if the edges of the given graph make up a valid tree, and false otherwise.
+'''
+    def validTree(self, n: int, edges: List[List[int]]) -> bool:
+        # a valid tree is going to have no cycles
+        # there will be n node and n-1 edges
+        # it will be a single tree so no disjointed graphs
+        # a valid tree will have one root node
+        # my assumption that the edges will be directed is wrong!
+            # so this implementation is off
+        if n==1 and len(edges)==0:
+            return True
+            
+        if(n-1 != len(edges)):
+            return False
+
+        # build graph from edges
+        possible_root_node = defaultdict(int)
+        graph = {}
+        for edge in edges:
+            if(edge[0] not in graph):
+                graph[edge[0]] = []
+            if edge[0] not in possible_root_node:
+                possible_root_node[edge[0]] = 0
+            possible_root_node[edge[1]] += 1
+            graph[edge[0]].append(edge[1])
+        
+        # Find a root or return False for invalid root
+        root = None
+        for key, value in possible_root_node.items():
+            if value==0 and root==None:
+                root = key
+            elif value==0 and root!=None:
+                return False # more than one root
+        if(root==None):
+            return False
+        
+        # single orphan node edge case
+        if(n > len(possible_root_node.keys())):
+            return False 
+
+        # can't use dfs to detect a cycle because it is a undirected graph
+        # use dfs to detect cycles.
+            # if no cycles then return True
+        visited = set()
+        recursive_stack = set()
+        def dfs(node):
+            visited.add(node)
+            recursive_stack.add(node)
+            for child in graph.get(node, []):
+                if child in recursive_stack:
+                    return False # cycle detected
+                # visit the edge
+                if not dfs(child):
+                    return False # cycle detected and passed up recursion stack
+            recursive_stack.remove(node)
+            return True
+        ret=dfs(root)
+        print('ret',ret)
+        # check if we visited every node from the root 
+        # otherwise its a disjointed graph
+        for node in graph.keys():
+            if node not in visited:
+                return False
+        return ret
+
+# [[0,1],[0,2],[0,3],[1,4]]
+# possible_root_node = (0:0, 1:1, 2:1, 3:1, 4:1)
+# root = 0
+# graph:
+    # 0:1,2,3
+    # 1:4
+# visited: (0,1,4,2,3)
+# recursive_stack: (0)
+
+# [[0,1],[0,2],[0,3],[1,4]]
+# possible_root_node = (0:0, 1:1, 2:1, 3:1, 4:1)
+# root = 0
+# graph:
+    # 0:1,2,3
+    # 1:4
+
+# [[1,2],[2,3],[1,3]]
+# 1:2,3
+# 2:3
+# And somehow this is said to have 4 nodes
+```
+```python
+'''
+for a undirected graph make the adjacency list have records for both
+also we just need to check visited to make sure there are no cycles since each node is guaranteed to be visited only once. Only one incoming edge to each node
+'''
+class Solution:
+    def validTree(self, n: int, edges: List[List[int]]) -> bool:
+        # a valid tree:
+            # has a single root -> we can turn the tree if it has multiple roots and it will end up with 
+                # a single root so this is no problem.
+            # n-1 edges for n nodes
+                # each node has 1 incoming node. Above check should cover this
+            # no disconnected trees allowed. Only a single valid tree
+        # edges are listed in a undirected way
+
+        # form an adjacency list representing neighbors of nodes
+        graph = {}
+        for edge in edges:
+            if(edge[0] not in graph):
+                graph[edge[0]] = []
+            if(edge[1] not in graph):
+                graph[edge[1]] = []
+            graph[edge[0]].append(edge[1])
+            graph[edge[1]].append(edge[0])
+        
+        # perform dfs to make sure there are no cycles
+        seen = set()
+        def dfs(node, parent=-1):
+            seen.add(node)
+            for child in graph.get(node, []):
+                if child==parent:
+                    continue # allow the trivial cycle of child-parent
+                if child in seen:
+                    return False # cycle detected
+                # visit the edge
+                if not dfs(child, node):
+                    return False # cycle detected and passed up recursion stack
+            return True
+        if dfs(0):
+            return len(seen) == n
+        else:
+            return False
+
+# [[0,1],[0,2],[0,3],[1,4]]
+# graph:
+    # 0:1,2,3
+    # 1:0,4
+    # 2:0
+    # 3:0
+    # 4:1
+# visited: (0,1,4,2,3)
+# dfs(0,-1)
+# return True
+
+# [[0,1],[1,2],[2,3],[1,3],[1,4]]
+# graph:
+    # 0:1
+    # 1:0,2,3,4
+    # 2:1,3
+    # 3:2,1
+    # 4:1
+# visited=(0,1,2,3)
+# dfs(0,-1) return False -> dfs(1,0) return False -> dfs(2,1) return False -> dfs(3,2) child==1 return False
+
+# Space: O(N)
+# Time: O(N)
+```
+
+
