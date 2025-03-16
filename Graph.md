@@ -177,7 +177,7 @@ class Solution:
         return True
 ```
 
-3. 207: Course Schedule - Using DFS to get order of courses to take and making sure there are no cycles. We are doing topological sort
+3. 207: Course Schedule - Using DFS to get order of courses to take and making sure there are no cycles. We are doing topological sort using DFS.
 ```python
 '''
 The plan + some methods I tried. I ended up needing hints and realized it needs to be topological sort.
@@ -459,6 +459,7 @@ class Solution:
 ```
 
 4. Hard graph problem: Alien Dictionary
+   Topological sort using BFS
 ```python
 '''
 Here is my attempt with a trie data structure that fails
@@ -523,6 +524,8 @@ class Solution:
 '''
 Here is the solution
 This is a tricky problem. I did not know that I should not process a char until its inorder has run down to 0. when inorder is 0 add it to the queue and process its children. makes sense.
+Also the in_order data structure + logic helps detect cycles. We will not get to all the chars if there is a cycle. if a char is a part of a cycle it will have a in_order > 0 and it will not reach zero. I am not sure how to get to this intuitively.
+Now, a cycle is like a traffic jam: if Ship F waits for Ship T (f → t), but Ship T waits for Ship F (t → f), neither can move—they’re stuck in a loop. Their in_degree never hits zero because each depends on the other. In graph terms, a cycle means some nodes (characters) can’t be processed, so we don’t visit all the characters in the topological sort.
 '''
 class Solution:
     def alienOrder(self, words: List[str]) -> str:
