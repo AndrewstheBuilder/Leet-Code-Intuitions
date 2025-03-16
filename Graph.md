@@ -519,4 +519,54 @@ class Solution:
 
         return ''.join(result)        
 ```
+```python
+'''
+Here is the solution
+This is a tricky problem. I did not know that I should not process a char until its inorder has run down to 0. when inorder is 0 add it to the queue and process its children. makes sense.
+'''
+class Solution:
+    def alienOrder(self, words: List[str]) -> str:
+        all_chars = set()
+
+        # get a unique set of characters
+        for word in words:
+            all_chars.update(word)
+
+        # initialize all characters at the 0 order
+        # this will be used to calculate where the word falls in lexicographical order
+        in_order = {}
+        for char in all_chars:
+            in_order[char] = 0
+        
+        # compare word with the next word to determine relative orderings of chars
+        graph=defaultdict(set)
+        for i in range(len(words)-1):
+            w1,w2 = words[i], words[i+1]
+            if w1.startswith(w2) and len(w1) != len(w2):
+                return "" # error unable to make ordering
+            for c1, c2 in zip(w1,w2):
+                if c1 != c2:
+                    if c2 not in graph[c1]:
+                        graph[c1].add(c2)
+                        in_order[c2] += 1
+                    # move on after first mismatch the rest of the string compares will be in ambiguous order
+                    # you cannot determine the order of the remaining chars after one mismatch
+                    break 
+
+        queue = deque()
+        queue.extend([c for c in all_chars if in_order[c]==0])
+        result = []
+        visited = set()
+        # what if in_order[char] is greater than 1? --> we keep processing
+        while queue:
+            char = queue.popleft()
+            result.append(char)
+            for child in graph[char]:
+                in_order[child] -= 1
+                if in_order[child]==0:
+                    queue.append(child)
+
+        return ''.join(result) if len(result) == len(all_chars) else ""
+    
+```
 
