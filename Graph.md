@@ -177,7 +177,7 @@ class Solution:
         return True
 ```
 
-3. 207: Course Schedule - Using DFS to get order of courses to take and making sure there are no cycles
+3. 207: Course Schedule - Using DFS to get order of courses to take and making sure there are no cycles. We are doing topological sort
 ```python
 '''
 The plan + some methods I tried. I ended up needing hints and realized it needs to be topological sort.
@@ -458,4 +458,65 @@ class Solution:
 # Time: O(N)
 ```
 
+4. Hard graph problem: Alien Dictionary
+```python
+'''
+Here is my attempt with a trie data structure that fails
+This fails when we have ["rf", "rt", "ft"]
+	I am not able to order f after t
+Also the constraint they implicitedly set where
+we return "" if the prefix for a word comes
+after the word I could not solve yet.
+'''
+class Node:
+    def __init__(self, value, next, prev, order):
+        self.value = value
+        self.next = next
+        self.prev=prev
+        self.order=order
+    
+    def __str__(self):
+        return f"TrieNode value={self.value}, order={self.order}"
+
+class Solution:
+    def alienOrder(self, words: List[str]) -> str:
+        # untold constraint
+            # the prefix of a word should be before the word itself. 
+            # ["ab", "abcd"] ---> correct
+            # ["abcd", "ab"] ---> incorrect
+            # this makes the problem so much harder
+        visited = {}
+        # create the trie
+        # if error return ""
+        root = Node(None,set(),None,0)
+        for word in words:
+            curr = root
+            for char in word:
+                if char not in visited:
+                    # create the Node
+                    newNode = Node(char, set(), None, curr.order+1)
+                    curr.next.add(newNode)
+                    visited[char] = newNode # keep reference to node
+                    curr = newNode
+                else:
+                    seenNode = visited[char]
+                    if seenNode.order < curr.order:
+                        # error
+                        return ""
+                    curr = seenNode
+
+        # bfs traversal to create possible word to return
+        queue = deque()
+        for children in root.next:
+            queue.append(children)
+
+        result = []
+        while queue:
+            curr = queue.popleft()
+            result.append(curr.value)
+            for children in curr.next:
+                queue.append(children)
+
+        return ''.join(result)        
+```
 
