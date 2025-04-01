@@ -572,4 +572,43 @@ class Solution:
         return ''.join(result) if len(result) == len(all_chars) else ""
     
 ```
+- Find the Celebrity [https://leetcode.com/problems/find-the-celebrity/]
+```python
+# The knows API is already defined for you.
+# return a bool, whether a knows b
+# def knows(a: int, b: int) -> bool:
+
+class Solution:
+    def isCelebrity(self, i, n):
+        for j in range(n):
+            if i==j:
+                continue
+            if knows(i,j) or not knows(j,i):
+                return False
+        return True
+
+    def findCelebrity(self, n: int) -> int:
+        celebrity_candidate = 0
+        for i in range(1,n):
+            if knows(celebrity_candidate, i):
+                celebrity_candidate = i
+        if(self.isCelebrity(celebrity_candidate, n)):
+            return celebrity_candidate
+        return -1
+
+
+# brute force
+    # go through each number and its surrounding numbers (nested for loop)
+        # candidates are numbers that only know itself
+        # a solution is when a candidate is known by n-1 people 
+
+# optimized below by removing candidates when i saw that a possible_candidate was unknown by somebody
+# it does not seem like there is another way to optimize this I thought about DFS but I am not going to be able to find out if a candidate I just got into has n-1 "fans"
+
+
+# optimal solution
+    # if they are a celebrity candidate they would be known by everyone.
+    # if 0 knows 1, 0 cannot be a celebrity candidate, but 1 can.
+        # and if 1 does not know anyone that comes farther down then they cannot be celebrity candidates 
+```
 
