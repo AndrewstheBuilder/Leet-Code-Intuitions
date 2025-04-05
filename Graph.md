@@ -611,4 +611,39 @@ class Solution:
     # if 0 knows 1, 0 cannot be a celebrity candidate, but 1 can.
         # and if 1 does not know anyone that comes farther down then they cannot be celebrity candidates 
 ```
+- Minimum Height Trees
+```python
+'''
+Suboptimal solution
+'''
+class Solution:
+    def findMinHeightTrees(self, n: int, edges: List[List[int]]) -> List[int]:
+        # what data structure / connection represents a undirected edge
+        graph = defaultdict(list)
+        for edge in edges:
+            graph[edge[0]].append(edge[1])
+            graph[edge[1]].append(edge[0])
+        min_h = float('inf')
+        roots = defaultdict(list)
+        def dfs(node, visited):
+            visited.add(node)
+            h = 0
+            max_h = 0
+            for child in graph[node]:
+                if(child not in visited):
+                    h = dfs(child,visited) + 1
+                max_h = max(h, max_h)
+            return max_h
+        for i in range(n):
+            # dfs to find overall height of tree
+            visited=set()
+            res_h = dfs(i,visited)
+            min_h=min(res_h, min_h)
+            roots[res_h].append(i)
+        return roots[min_h]
+# Time Complexity: O(N^2) N being the number of nodes
+# Space Complexity: O(N+E)
+```
+- wow the efficient solution for this problem is topological sorting! I am still not used to topological sorting. What even is topological sorting I know the end result is sorted nodes. **the approach** here is to start at the leaf nodes and start trimming nodes working ourselves up to the roots.
+	- The algorithm below resembles the _topological sorting_ algorithm which generates the order of objects based on their dependencies. For instance, in the scenario of course scheduling, the courses that have the least dependency would appear first in the order.
 
