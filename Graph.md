@@ -646,4 +646,48 @@ class Solution:
 ```
 - wow the efficient solution for this problem is topological sorting! I am still not used to topological sorting. What even is topological sorting I know the end result is sorted nodes. **the approach** here is to start at the leaf nodes and start trimming nodes working ourselves up to the roots.
 	- The algorithm below resembles the _topological sorting_ algorithm which generates the order of objects based on their dependencies. For instance, in the scenario of course scheduling, the courses that have the least dependency would appear first in the order.
+```python
+class Solution:
+    def findMinHeightTrees(self, n: int, edges: List[List[int]]) -> List[int]:
+        # base cases
+        if n==1:
+            return [0]
+        if n==2:
+            return [0,1]
+        graph = defaultdict(set)
+        for edge in edges:
+            graph[edge[0]].add(edge[1])
+            graph[edge[1]].add(edge[0])
+        
+        # gather all the leaves
+        # we are guaranteed to have leaves because there's no cycles in our graph
+        leaves = []
+        for key in graph.keys():
+            if(len(graph[key])==1):
+                leaves.append(key)
+        remainingNodes = n
+        # the centroids could be 2 or less
+        while remainingNodes > 2:
+            leaf_children = set()
+            while leaves:
+                leaf = leaves.pop()
+                if(len(graph.get(leaf,[]))==1):
+                    leaf_child = graph[leaf].pop()
+                    leaf_children.add(leaf_child)
+                    graph[leaf_child].remove(leaf)
+                del graph[leaf]
+                remainingNodes -= 1
+            for leaf_child in leaf_children:
+                if len(graph.get(leaf_child, []))==1:
+                    leaves.append(leaf_child)
+        
+        return list(graph.keys()) # the centroids of the tree
+
+        '''
+        Notes
+        # what data structure / connection represents a undirected edge
+        # I think I can calculate the height of the tree from each node as a possible root upon creation of the tree from the list of edges
+        # nevermind we would have visit all the nodes to make this happen.
+        '''
+```
 
