@@ -690,4 +690,131 @@ class Solution:
         # nevermind we would have visit all the nodes to make this happen.
         '''
 ```
+- Number of Connected Components in an Undirected Graph
+```python
+class Solution:
+    def countComponents(self, n: int, edges: List[List[int]]) -> int:
+        # build out graph in the form of an adj. list
+        adj = defaultdict(list)
+        for edge in edges:
+            adj[edge[0]].append(edge[1])
+            adj[edge[1]].append(edge[0])
+        # do search to figure out how many connected components
+        seen=set()
+        connected = 0
+        def dfs(node):
+            seen.add(node)
+            for child in adj[node]:
+                if child not in seen:
+                    dfs(child)
+
+        for key in adj.keys():
+            if key not in seen:
+                connected+=1
+                dfs(key)
+        for i in range(n):
+            if i not in seen:
+                connected+=1
+        return connected
+
+        # key thing I missed what if the node is all by itself how does it get represented in the edges list -> answer: it does not and you have to assume there is a lone node that is connected to itself.
+
+        '''
+        Disjoint Set Union (DSU) Approach:
+        Start by assuming each vertex is a separate component
+        I did not get to see the full capability of the find() function in DSU approach to LeetCode problem 323. Number of Connected Components in Graph
+        *find finds the vertex that the vertex I am looking at initially has been combined with because representative[vertex] != vertex so what ever the rep. is is where I need to look for the correct size of the combined vertices
+        '''
+class Solution:
+    def countComponents(self, n: int, edges: List[List[int]]) -> int:
+        # start by assuming each vertex is a separate component.
+        size = [1]*n
+        representative=[i for i in range(n)]
+        connected=n
+        
+        def combine(vertex1, vertex2):
+            # print('------------')
+            # print('edge',(vertex1, vertex2))
+            
+            #
+            # my find() is while loops
+            #
+            while representative[vertex1] != vertex1:
+                # find what vertex1 has been combined to
+                vertex1 = representative[vertex1]
+            while representative[vertex2] != vertex2:
+                # find what vertex2 has been combined to
+                vertex2 = representative[vertex2]
+            if(representative[vertex1]==representative[vertex2]):
+                return 0 # already combined
+            if(size[vertex2] > size[vertex1]):
+                # combine on edge 1
+                representative[vertex1] = vertex2
+                size[vertex2] += size[vertex1]
+            else:
+                representative[vertex2] = vertex1
+                size[vertex1] += size[vertex2]
+            # print('rep',representative)
+            # print('sizes',size)
+            return 1
+
+        # go through edges and combine the vertices
+        for edge in edges:
+            connected -= combine(edge[0], edge[1])
+        # print('representative',representative)
+        # print('connected',connected)
+        return connected
+# space: O(V) for the vertices
+# Time: O(E*V)
+```
+``` Java
+'''
+Optimal DSU solution in java
+'''
+public class Solution {
+
+    private int find(int[] representative, int vertex) {
+        if (vertex == representative[vertex]) {
+            return vertex;
+        }
+        
+        return representative[vertex] = find(representative, representative[vertex]);
+    }
+    
+    private int combine(int[] representative, int[] size, int vertex1, int vertex2) {
+        vertex1 = find(representative, vertex1);
+        vertex2 = find(representative, vertex2);
+        
+        if (vertex1 == vertex2) {
+            return 0;
+        } else {
+            if (size[vertex1] > size[vertex2]) {
+                size[vertex1] += size[vertex2];
+                representative[vertex2] = vertex1;
+            } else {
+                size[vertex2] += size[vertex1];
+                representative[vertex1] = vertex2;
+            }
+            return 1;
+        }
+    }
+
+    public int countComponents(int n, int[][] edges) {
+        int[] representative = new int[n];
+        int[] size = new int[n];
+        
+        for (int i = 0; i < n; i++) {
+            representative[i] = i;
+            size[i] = 1;
+        }
+        
+        int components = n;
+        for (int i = 0; i < edges.length; i++) { 
+            components -= combine(representative, size, edges[i][0], edges[i][1]);
+        }
+
+        return components;
+    }
+}
+```
 
