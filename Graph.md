@@ -818,3 +818,36 @@ public class Solution {
 }
 ```
 
+- Longest Increasing Path 
+```python
+'''
+Below is the brute force approach. Look at every node and do dfs through it. It got time complexity exceeded. I need to find a more efficient approach.
+
+Also I was returning in the dfs recursive call and it would not let the for loop finish. Because it returns immediately when dfs(0,1) returns 
+	- return dfs(0,0) -> dfs(0,1) return 
+'''
+class Solution:
+    def longestIncreasingPath(self, matrix: List[List[int]]) -> int:
+        row_l = len(matrix)
+        col_l = len(matrix[0])
+        longest_l=-float('inf')
+        visited=set()
+        # dfs over all the nodes to find the longest path
+        def dfs(m,n,length):
+            nonlocal longest_l
+            visited.add((m,n))
+            if(length>longest_l):
+                longest_l=length
+            for new_m, new_n in ((m+1,n),(m-1,n),(m,n-1),(m,n+1)):
+                if(new_m<row_l and new_m>=0 and new_n<col_l and new_n>=0):
+                    if((new_m, new_n) not in visited):
+                        if(matrix[new_m][new_n] > matrix[m][n]):
+                            dfs(new_m,new_n,length+1)
+            visited.remove((m,n))
+            return
+        for i in range(row_l):
+            for j in range(col_l):
+                dfs(i,j,1)     
+        return longest_l
+```
+
