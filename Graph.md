@@ -850,4 +850,40 @@ class Solution:
                 dfs(i,j,1)     
         return longest_l
 ```
+```python
+'''
+Solution with DFS using caching
+'''
+class Solution:
+    def longestIncreasingPath(self, matrix: List[List[int]]) -> int:
+        row_l = len(matrix)
+        col_l = len(matrix[0])
+        longest_l=-float('inf')
+         #key: (m,n) -> cache keeping track of longest path found in searching all paths at (m,n)
+        cache=defaultdict(int)
+        # dfs over all the nodes to find the longest path
+        def dfs(m,n):
+            if(cache[(m,n)]>0):
+                return cache[(m,n)]
+            for new_m, new_n in ((m+1,n),(m-1,n),(m,n-1),(m,n+1)):
+                if(new_m<row_l and new_m>=0 and new_n<col_l and new_n>=0 and matrix[new_m][new_n] > matrix[m][n]):
+                    cache[(m,n)] = max(cache[(m,n)],dfs(new_m,new_n))
+            cache[(m,n)] += 1
+            return cache[(m,n)]
+        ans = 0
+        for i in range(row_l):
+            for j in range(col_l):
+                ans = max(ans,dfs(i,j))     
+        return ans
+
+'''
+# the question how do I pass the length I find at the end to the origin (m,n)
+# Answer Below:
+cache[node] = 0
+for node in nodes:
+    cache[node] = max(cache[node], recursive_call())
+return ++cache[node]
+'''
+```
+	- There is a solution using dynamic programming I will do that one tomorrow :)
 
