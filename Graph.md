@@ -885,5 +885,5 @@ for node in nodes:
 return ++cache[node]
 '''
 ```
-	- There is a solution using dynamic programming I will do that one tomorrow :) the caching is the beginning of the dynamic programming(DP). Now we just have to do caching without recursion but just as efficient and its DP.
+	- There is a solution using dynamic programming I will do that one tomorrow :) the caching is the beginning of the dynamic programming(DP). Now we just have to do caching without recursion but just as efficient and its DP. *It actually becomes a topological ordering problem* For the sake of time I decided to skip this implementation.
 
