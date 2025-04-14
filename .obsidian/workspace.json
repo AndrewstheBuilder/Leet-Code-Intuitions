@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Graph.md",
+                "file": "Dynamic_Programming.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Graph"
+              "title": "Dynamic_Programming"
             }
           }
         ]
@@ -165,12 +165,12 @@
   },
   "active": "f8af69d2546dfba3",
   "lastOpenFiles": [
+    "Graph.md",
     "Math.md",
     "Prefix.md",
     "Combinations.md",
     "Untitled",
     "Two Pointer - Sliding Window.md",
-    "Graph.md",
     "Dynamic_Programming.md",
     "CodingPatterns.md",
     "Intervals.md",

@@ -93,4 +93,39 @@ class Solution:
         return recurse(0,0)
 ```
 - TODO: make the iterative solution for this problem from the recursive calls and their results used above. We will mimic the recursive calls by using a 2D matrix.
+- [Unique Paths](https://leetcode.com/problems/unique-paths/description/?envType=problem-list-v2&envId=dynamic-programming)
+```python
+class Solution:
+    def uniquePaths(self, m: int, n: int) -> int:
+        grid = []
+        for i in range(m):
+            grid.append([0]*n)
+        grid[m-1][n-1] = 1
+        directions = [(-1,0),(0,-1)]
+        stack = {(m-1,n-1)}
+        while stack:
+            # find neighbors and add count from origin node
+            neighbors = set()
+            while stack:
+                node = stack.pop()
+                for d in directions:
+                    x=node[0]+d[0]
+                    y=node[1]+d[1]
+                    if(x>=0 and y>=0 and x<m and y<n):
+                        grid[x][y] += grid[node[0]][node[1]]
+                        neighbors.add((x,y))
+            stack.update(neighbors)
+        #     print('stack',stack)
+        # print('grid',grid)
+        return grid[0][0]
         
+
+    
+'''
+At each position the robot has two choices to make. 
+Start at the bottom right and work backwards to top left.
+The bottom right cell will be 1. Now we work back wards by moving left and up to the top left. Each new cell on first encounter has 0 but we add the value of the previous cell to it.
+* We have to process the nodes in the stack first before updating the stack with the neighbors we discovered. This is because we want the final count of the neighbors before using the neighbors to discover further neighbors*
+* Also I did not use a list based stack because then I would have to make sure I did not add the same node twice. With a list based node it could have been the normal pop and update procedure instead of popping everything then updating.
+'''
+```
