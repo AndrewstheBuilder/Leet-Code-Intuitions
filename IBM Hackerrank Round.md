@@ -1,5 +1,5 @@
 1. Asks me to find the minimum consecutive number of elements I could remove from the array and have an array that has unique values.
-- Similar to LeetCode 2260. Minimum Consecutive Cards to Pick up(Maybe I should have warmed up first before tackling the IBM challenge. Oh well. Live and Learn!)
+- Similar to [LeetCode 2260. Minimum Consecutive Cards to Pick up](https://leetcode.com/problems/minimum-consecutive-cards-to-pick-up/)(Maybe I should have warmed up first before tackling the IBM challenge. Oh well. Live and Learn!)
 ```python
 class Solution:
     def minimumCardPickup(self, cards: List[int]) -> int:

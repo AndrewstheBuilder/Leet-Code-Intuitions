@@ -170,7 +170,6 @@ class Solution:
 Official leetcode Solution
 Time: O(M*N)
 Space: O(1)
-TODO: Implement this without looking at it when I come back!
 '''
 class Solution(object):
     def uniquePathsWithObstacles(self, obstacleGrid: List[List[int]]) -> int:
@@ -212,4 +211,59 @@ class Solution(object):
 
         # Return value stored in rightmost bottommost cell. That is the destination.
         return obstacleGrid[m - 1][n - 1]
+```
+```python
+'''
+My space efficient solution
+'''
+class Solution:
+    def uniquePathsWithObstacles(self, grid: List[List[int]]) -> int:
+        if grid[0][0]==1:
+            return 0
+        row_l=len(grid)
+        col_l=len(grid[0])
+        grid[0][0]=1
+        # populate the first col
+        obstacle=False
+        for r in range(1,row_l):
+            if(grid[r][0]==1):
+                # obstacle
+                grid[r][0]=0
+                obstacle=True
+            else:
+                if obstacle:
+                    # obstacle encountered
+                    grid[r][0]=0
+                else:
+                    grid[r][0]=1
+        # populate the first row
+        obstacle=False
+        for c in range(1,col_l):
+            if(grid[0][c]==1):
+                # obstacle
+                grid[0][c]=0
+                obstacle=True
+            else:
+                if obstacle:
+                    # obstacle encountered
+                    grid[0][c]=0
+                else:
+                    grid[0][c]=1
+        for r in range(1,row_l):
+            for c in range(1,col_l):
+                if grid[r][c]==1:
+                    # obstacle
+                    grid[r][c]=0
+                    continue
+                else:
+                    grid[r][c] += grid[r-1][c]
+                    grid[r][c] += grid[r][c-1]
+        return grid[row_l-1][col_l-1]
+
+
+    '''
+    robot has two options at every block
+    only 1 block means 1 path
+    we got to make it to where every left and up is already accounted for on the first iteration. We need to know about obstacles
+    '''
 ```
