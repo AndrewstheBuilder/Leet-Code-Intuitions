@@ -34,9 +34,23 @@
               "icon": "lucide-file",
               "title": "Tree"
             }
+          },
+          {
+            "id": "a3b552e92e01f69c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "String.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "String"
+            }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -178,10 +192,11 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "c9942f79e4f9c718",
+  "active": "a3b552e92e01f69c",
   "lastOpenFiles": [
-    "Graph.md",
     "Tree.md",
+    "String.md",
+    "Graph.md",
     "Dynamic_Programming.md",
     "IBM Hackerrank Round.md",
     "Math.md",
