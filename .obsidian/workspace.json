@@ -13,15 +13,30 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Dynamic_Programming.md",
+                "file": "Graph.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Dynamic_Programming"
+              "title": "Graph"
+            }
+          },
+          {
+            "id": "c9942f79e4f9c718",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Tree.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Tree"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -163,11 +178,12 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "f8af69d2546dfba3",
+  "active": "c9942f79e4f9c718",
   "lastOpenFiles": [
-    "IBM Hackerrank Round.md",
-    "Dynamic_Programming.md",
     "Graph.md",
+    "Tree.md",
+    "Dynamic_Programming.md",
+    "IBM Hackerrank Round.md",
     "Math.md",
     "Prefix.md",
     "Combinations.md",
