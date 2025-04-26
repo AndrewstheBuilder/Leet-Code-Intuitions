@@ -50,7 +50,7 @@
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -192,10 +192,10 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "a3b552e92e01f69c",
+  "active": "c9942f79e4f9c718",
   "lastOpenFiles": [
-    "Tree.md",
     "String.md",
+    "Tree.md",
     "Graph.md",
     "Dynamic_Programming.md",
     "IBM Hackerrank Round.md",

@@ -50,3 +50,4 @@ class Solution:
 ```
 - Time Complexity of Both: O(M\*N) M being root and N being subTree number of nodes
 - Space Complexity: O(M + N). We go through M nodes so there can be M elements in the recursive stack and at each call we go through the subtree which adds N elements to the recursive stack.
+- TODO look at string matching solution to this problem
