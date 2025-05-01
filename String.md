@@ -44,6 +44,19 @@ class Solution:
         return False
 '''
 TODO: String Concatenation solution. And above figure out sqrt(n) time complexity.
+Mathematical Proof: 
+If we concatenate s twice, i.e., form another string t where t = s + s and remove the first and last character from it, t would look like t = (head + p * (k - 1)) + (p * (k - 1) + tail) where head is p without first character, tail is p without last character and p * (k - 1) denotes p repeated k - 1 times.
+
+As a result, t = head + p * (2k - 2) + tail. We now have 2 possibilities: either k = 1 and the answer is false, or k > 1 and the answer is true.
 '''
+"avcavc" -> "avcavcavcavc" -> t[1:-1] = "vcavcavcav"
+"avcavcs" -> "avcavcsavcavcs" -> t[1:-1] = "vcavcsavcavc"
+class Solution:
+    def repeatedSubstringPattern(self, s: str) -> bool:
+        t = s + s
+        if s in t[1:-1]:
+            return True
+        return False
 ```
+
 
