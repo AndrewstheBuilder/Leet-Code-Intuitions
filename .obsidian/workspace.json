@@ -41,12 +41,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Tree.md",
+                "file": "String.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Tree"
+              "title": "String"
             }
           }
         ],
@@ -194,8 +194,8 @@
   },
   "active": "a3b552e92e01f69c",
   "lastOpenFiles": [
-    "String.md",
     "Tree.md",
+    "String.md",
     "Graph.md",
     "Dynamic_Programming.md",
     "IBM Hackerrank Round.md",
