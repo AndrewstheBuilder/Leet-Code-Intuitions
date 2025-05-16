@@ -61,7 +61,7 @@ class Solution:
 * [Repeated Pattern Matching]()
 ```python
 '''
-Recursive Solution. There is also a dynamic programming approach LOL
+Recursive Solution. There is also a dynamic programming approach LOL. The below solution is not accepted.
 '''
 class Solution:
     def isMatch(self, s: str, p: str) -> bool:
@@ -71,4 +71,56 @@ class Solution:
         if len(p)>1 and p[1]=="*":
                 return self.isMatch(s,p[2:]) or (first_match and self.isMatch(s[1:], p))
         return first_match and self.isMatch(s[1:], p[1:])
+```
+- [Word Subsets](https://leetcode.com/problems/word-subsets/)
+```python
+'''
+Dumb solution that does not work!!!
+Each w2 in words2 needs to be a subset of the universal word. Here I am accumulating all the character counts of words2 which is incorrect
+'''
+class Solution:
+    def wordSubsets(self, words1: List[str], words2: List[str]) -> List[str]:
+        word2_dict = defaultdict(int)
+        for word in words2:
+            for char in word:
+                word2_dict[char] += 1
+        # print('word2_dict',word2_dict)
+        ans = [] # list of all universal words from words1
+        for word in words1:
+            word_char = Counter(word)
+            universal=True
+            # print('word_char',word_char)
+            for key, value in word2_dict.items():
+                if word_char[key] < value:
+                    universal=False
+            if universal:
+                ans.append(word)
+        return ans
+```
+```python
+'''
+Accepted Solution.
+Let N represent the total information in words1
+Let X represent the total information in words2
+Time Complexity: O(X+N)
+Space Complexity: O(1) because although a new datastructure is created X and N times. Its in a for loop and does not persist across the iterations of the loop! The max size of that datastructure is a constant number => 26.
+'''
+class Solution:
+    def wordSubsets(self, words1: List[str], words2: List[str]) -> List[str]:
+        ans = []
+        w2_ds = defaultdict(int)
+        for w2 in words2:
+            w2_d = Counter(w2)
+            for key, value in w2_d.items():
+                w2_ds[key] = max(value, w2_ds[key])
+        for w1 in words1:
+            universal=True
+            w1_d = Counter(w1)
+            for key, value in w2_ds.items():
+                if w1_d[key]<value:
+                    universal=False
+                    break
+            if universal:
+                ans.append(w1)
+        return ans
 ```

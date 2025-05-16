@@ -267,3 +267,53 @@ class Solution:
     we got to make it to where every left and up is already accounted for on the first iteration. We need to know about obstacles
     '''
 ```
+- [Regular Expression Matching](https://leetcode.com/problems/regular-expression-matching/?envType=problem-list-v2&envId=string)
+```python
+'''
+Recursive Solution
+'''
+class Solution:
+    def isMatch(self, s: str, p: str) -> bool:
+        if not p:
+            return not s
+        first_match = bool(s) and p[0] in {s[0], '.'}
+        if len(p)>1 and p[1]=="*":
+                return self.isMatch(s,p[2:]) or (first_match and self.isMatch(s[1:], p))
+        return first_match and self.isMatch(s[1:], p[1:])
+```
+s=abaab, p=ab.\*b
+s=abaab, p=ab.\*b -> baab, b.\*b -> aab, .\*b  1(False) OR 2(True)-> aab, b returnFalse
+                                         -> ab, .\*b  1(False) OR 2(True) -> ab, b return False
+                                         -> b, .\*b 1(True so we don't need to evaluate 2?) OR 2  -> b, b return True
+- I do not see where we would be cutting down on duplicate transactions with dynamic programming. We need to explore two paths because the star(\*) operator makes what preceded it optional. How would you optimize that search?
+s=abaab, p=ab.\*ab
+```python
+'''
+The dynamic programming approach iterates through the pattern and text in a different way.
+TODO: study it and understand it
+'''
+class Solution(object):
+    def isMatch(self, text: str, pattern: str) -> bool:
+        dp = [[False] * (len(pattern) + 1) for _ in range(len(text) + 1)]
+
+        dp[-1][-1] = True
+        for i in range(len(text), -1, -1):
+            for j in range(len(pattern) - 1, -1, -1):
+                first_match = i < len(text) and pattern[j] in {text[i], "."}
+                if j + 1 < len(pattern) and pattern[j + 1] == "*":
+                    dp[i][j] = dp[i][j + 2] or first_match and dp[i + 1][j]
+                else:
+                    dp[i][j] = first_match and dp[i + 1][j + 1]
+
+        return dp[0][0]
+
+s=abaab, p=ab.\*b
+dp=[
+[False,False,False,False,False,False],
+[False,False,False,False,False,False],
+[False,False,False,False,False,False],
+[False,False,False,False,False,False],
+[False,False,False,False,False,False],
+[False,False,False,False,False,True]
+]
+```
